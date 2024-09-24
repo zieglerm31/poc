@@ -13,7 +13,7 @@
              initial="1"
              label=""
              name=""
-             traceCondition="spel:False"
+             traceCondition="spel:true"
              traceField="spel:#initial[&#34;event-additional-info&#34;][&#34;tracingid&#34;]"
              traceList="h3irs_tracing"
              traceRandom="spel:100"
