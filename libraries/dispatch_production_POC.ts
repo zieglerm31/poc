@@ -9,7 +9,7 @@ function dispatch(event : any) : string {
     // Dispatch poc SIP Invites & poc SIP Options
     try {
 
-        if ( event.SIP.message.method[0].match(/^OPTIONS$/) && event.SIP["R-URI"].address.uri != null) {
+        if ( event.SIP.message.method[0].match(/^OPTIONS$/)) {
 
             if (event.SIP["R-URI"].address.value.match(/^sip:10/)) {
 
