@@ -131,7 +131,7 @@
          </mxGeometry>
       </mxCell>
       <undefined action="com.eitg.quasar.nexus.siphandlers.GetConfiguration"
-                 configuration="meta.qp.IRS_env_setting"
+                 configuration="meta.qp.POC_env_setting"
                  label="Get ENV setting &#xA;configuration"
                  refreshPeriod="spel:10"
                  slot="env_setting"
