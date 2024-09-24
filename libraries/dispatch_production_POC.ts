@@ -11,7 +11,7 @@ function dispatch(event : any) : string {
 
         if ( event.SIP.message.method[0].match(/^OPTIONS$/) && event.SIP["R-URI"].address.uri.user != null) {
 
-            if (event.SIP["R-URI"].address.uri.user.match(/^sip/)) {
+            if (event.SIP["R-URI"].address.uri.user.match(/^10/)) {
 
                 return "production:poc:poc_main";
                 
