@@ -25,9 +25,9 @@ function dispatch(event : any) : string {
 
     } catch (e) {
 
-        return "production:poc:poc_Drop" ;
+        return "production:poc:drop" ;
     }
 
     // Default
-	return "production:poc:poc_Drop" ;
+	return "production:poc:drop" ;
 }
