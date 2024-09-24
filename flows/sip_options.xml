@@ -1,151 +1,338 @@
-<mxGraphModel connect="1" dx="1313" dy="665" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1278" dy="712" grid="1" gridSize="10" guides="1" tooltips="1" connect="1"
+              fold="1"
+              page="1"
+              pageScale="1"
+              pageWidth="826"
+              pageHeight="1169">
    <root>
-      <mxCell id="0" />
-      <mxCell id="1" parent="0" />
-      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="2" initial="1" label="Start (generic)" name="">
-         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFF00;" vertex="1">
-            <mxGeometry as="geometry" height="80" width="80" x="530" y="160" />
+      <mxCell id="0"/>
+      <mxCell id="1" parent="0"/>
+      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler"
+             initial="1"
+             label="Start (generic)"
+             name=""
+             id="2">
+         <mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFF00;" parent="1" vertex="1">
+            <mxGeometry x="530" y="160" width="80" height="80" as="geometry"/>
          </mxCell>
       </start>
-      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="9" isfinal="yes" label="Stop">
-         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
-            <mxGeometry as="geometry" height="80" width="80" x="748" y="1342" />
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler"
+            isfinal="yes"
+            label="Stop"
+            id="9">
+         <mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" parent="1" vertex="1">
+            <mxGeometry x="748" y="1342" width="80" height="80" as="geometry"/>
          </mxCell>
       </stop>
-      <mxCell edge="1" id="10" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;exitX=1;exitY=1;" target="216" value="sip.sessionStart.OPTIONS">
-         <mxGeometry as="geometry" relative="1">
+      <mxCell id="10" value="sip.sessionStart.OPTIONS"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;exitX=1;exitY=1;"
+              parent="1"
+              source="2"
+              target="216"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
             <Array as="points">
-               <mxPoint x="598" y="320" />
-               <mxPoint x="788" y="320" />
+               <mxPoint x="598" y="320"/>
+               <mxPoint x="788" y="320"/>
             </Array>
          </mxGeometry>
       </mxCell>
-      <undefined action="com.eitg.quasar.nexus.siphandlers.ScxmlAbortCall" cause="" errorCode="spel:200" id="11" label="Send 200 OK &#10;for Options" message="spel:#session[&quot;s_savedevent&quot;]" name="" reason.down.q850.cause="" reason.down.q850.text="" reason.down.sip.cause="" reason.down.sip.text="" reason.up.q850.cause="" reason.up.q850.text="" reason.up.sip.cause="" reason.up.sip.text="">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="968" />
+      <undefined action="com.eitg.quasar.nexus.siphandlers.ScxmlAbortCall" cause=""
+                 errorCode="spel:200"
+                 label="Send 200 OK &#xA;for Options"
+                 message="spel:#session[&#34;s_savedevent&#34;]"
+                 name=""
+                 reason.down.q850.cause=""
+                 reason.down.q850.text=""
+                 reason.down.sip.cause=""
+                 reason.down.sip.text=""
+                 reason.up.q850.cause=""
+                 reason.up.q850.text=""
+                 reason.up.sip.cause=""
+                 reason.up.sip.text=""
+                 id="11">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="968" width="120" height="60" as="geometry"/>
          </mxCell>
       </undefined>
-      <mxCell id="37" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;sip_options&#10;Author: MaZi" vertex="1">
-         <mxGeometry as="geometry" height="70" width="190" x="40" y="20" />
+      <mxCell id="37" value="&#xA;sip_options&#xA;Author: MaZi"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="40" y="20" width="190" height="70" as="geometry"/>
       </mxCell>
-      <mxCell id="38" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;Check incomig event" vertex="1">
-         <mxGeometry as="geometry" height="50" width="120" x="509" y="93" />
+      <mxCell id="38" value="&#xA;Check incomig event"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="509" y="93" width="120" height="50" as="geometry"/>
       </mxCell>
-      <mxCell id="39" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;SIP Options are&#10;answered by service" vertex="1">
-         <mxGeometry as="geometry" height="50" width="120" x="776" y="111" />
+      <mxCell id="39" value="&#xA;SIP Options are&#xA;answered by service"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="776" y="111" width="120" height="50" as="geometry"/>
       </mxCell>
-      <mxCell id="40" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;All other events are &#10;ignored by service" vertex="1">
-         <mxGeometry as="geometry" height="50" width="120" x="567" y="486" />
+      <mxCell id="40" value="&#xA;All other events are &#xA;ignored by service"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="567" y="486" width="120" height="50" as="geometry"/>
       </mxCell>
-      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="prettytrace" id="190" label="Lib utils&#10;function prettytrace" library="h3irs:utils">
-         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="482" y="729" />
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary"
+                          function="prettytrace"
+                          label="Lib utils&#xA;function prettytrace"
+                          library="h3irs:utils"
+                          id="190">
+         <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" parent="1"
+                 vertex="1">
+            <mxGeometry x="482" y="729" width="120" height="60" as="geometry"/>
          </mxCell>
       </typescript-library>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="startstop" counter="unkonwn" id="191" label="Stats Start.&#10;Event.Unknown" name="unkonwn" type="event">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="482" y="418" />
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="startstop"
+               counter="unkonwn"
+               label="Stats Start.&#xA;Event.Unknown"
+               name="unkonwn"
+               type="event"
+               id="191">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="482" y="418" width="120" height="60" as="geometry"/>
          </mxCell>
       </counter>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="start" counter="OPTIONS" id="192" label="Stats Start.&#10;Event.OPTIONS" name="OPTIONS" type="event">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="478" />
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="start"
+               counter="OPTIONS"
+               label="Stats Start.&#xA;Event.OPTIONS"
+               name="OPTIONS"
+               type="event"
+               id="192">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="478" width="120" height="60" as="geometry"/>
          </mxCell>
       </counter>
-      <mxCell edge="1" id="193" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;entryX=0.5;entryY=0;" target="191" value="*">
-         <mxGeometry as="geometry" relative="1">
+      <mxCell id="193" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="2"
+              target="191"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
             <Array as="points">
-               <mxPoint x="540" y="329" />
+               <mxPoint x="540" y="329"/>
             </Array>
          </mxGeometry>
       </mxCell>
-      <undefined action="com.eitg.quasar.nexus.siphandlers.GetConfiguration" configuration="meta.qp.IRS_env_setting" id="194" label="Get ENV setting &#10;configuration" refreshPeriod="spel:10" slot="env_setting">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="599" />
+      <undefined action="com.eitg.quasar.nexus.siphandlers.GetConfiguration"
+                 configuration="meta.qp.IRS_env_setting"
+                 label="Get ENV setting &#xA;configuration"
+                 refreshPeriod="spel:10"
+                 slot="env_setting"
+                 id="194">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="599" width="120" height="60" as="geometry"/>
          </mxCell>
       </undefined>
-      <mxCell edge="1" id="195" parent="1" source="192" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="194" value="">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="195" value=""
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="192"
+              target="194"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="prettytrace" id="196" label="Lib utils&#10;function prettytrace" library="h3irs:utils">
-         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="729" />
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary"
+                          function="prettytrace"
+                          label="Lib utils&#xA;function prettytrace"
+                          library="h3irs:utils"
+                          id="196">
+         <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="729" width="120" height="60" as="geometry"/>
          </mxCell>
       </typescript-library>
-      <mxCell edge="1" id="197" parent="1" source="191" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="190" value="">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="197" value=""
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="191"
+              target="190"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <mxCell edge="1" id="198" parent="1" source="194" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="196" value="*">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="198" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="194"
+              target="196"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.sipoptionsdrop="spel:#session[&quot;env_setting&quot;][&quot;sip_options_ack&quot;] eq False" id="199" label="SIP.OPTIONS drop Check">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="878" />
+      <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent"
+                               evt.sipoptionsdrop="spel:#session[&#34;env_setting&#34;][&#34;sip_options_ack&#34;] eq False"
+                               label="SIP.OPTIONS drop Check"
+                               id="199">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="878" width="120" height="60" as="geometry"/>
          </mxCell>
       </event-generator-handler>
-      <mxCell edge="1" id="200" parent="1" source="196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="199" value="*">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="200" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="196"
+              target="199"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <mxCell edge="1" id="201" parent="1" source="199" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="11" value="*">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="201" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="199"
+              target="11"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="stop" counter="OPTIONS" id="202" label="Stats Stop.&#10;Event.OPTIONS" name="OPTIONS" type="event">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="1103" />
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="stop"
+               counter="OPTIONS"
+               label="Stats Stop.&#xA;Event.OPTIONS"
+               name="OPTIONS"
+               type="event"
+               id="202">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="1103" width="120" height="60" as="geometry"/>
          </mxCell>
       </counter>
-      <mxCell edge="1" id="203" parent="1" source="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="202" value="sip.sessionEnd">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="203" value="sip.sessionEnd"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="11"
+              target="202"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="stop" counter="noinvite" id="204" label="Stats Stop.&#10;Event.noinvite" name="noinvite" type="event">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="1228" />
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="stop"
+               counter="noinvite"
+               label="Stats Stop.&#xA;Event.noinvite"
+               name="noinvite"
+               type="event"
+               id="204">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="1228" width="120" height="60" as="geometry"/>
          </mxCell>
       </counter>
-      <mxCell edge="1" id="205" parent="1" source="202" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="204">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="205"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="202"
+              target="204"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <mxCell edge="1" id="206" parent="1" source="204" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="9">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="206"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="204"
+              target="9"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="stop" counter="OPTIONSdrop" id="207" label="Stats Stop.&#10;Event.OPTIONS" name="OPTIONSdrop" type="event">
-         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="940" y="1103" />
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="stop"
+               counter="OPTIONSdrop"
+               label="Stats Stop.&#xA;Event.OPTIONS"
+               name="OPTIONSdrop"
+               type="event"
+               id="207">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="940" y="1103" width="120" height="60" as="geometry"/>
          </mxCell>
       </counter>
-      <mxCell edge="1" id="208" parent="1" source="199" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="207" value="sipoptionsdrop">
-         <mxGeometry as="geometry" relative="1">
+      <mxCell id="208" value="sipoptionsdrop"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;"
+              parent="1"
+              source="199"
+              target="207"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
             <Array as="points">
-               <mxPoint x="1000" y="908" />
+               <mxPoint x="1000" y="908"/>
             </Array>
          </mxGeometry>
       </mxCell>
-      <mxCell edge="1" id="209" parent="1" source="207" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="204">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="209"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;"
+              parent="1"
+              source="207"
+              target="204"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <mxCell id="210" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="stop session on INVITE without sending an answr" vertex="1">
-         <mxGeometry as="geometry" height="54" width="158" x="861" y="1278" />
+      <mxCell id="210" value="stop session on INVITE without sending an answr"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="861" y="1278" width="158" height="54" as="geometry"/>
       </mxCell>
-      <mxCell id="211" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="if configuration is sip_options_ack=false then OPTIONS are not answered and traffic is gracefully removed from system" vertex="1">
-         <mxGeometry as="geometry" height="92" width="190" x="1120" y="1106" />
+      <mxCell id="211"
+              value="if configuration is sip_options_ack=false then OPTIONS are not answered and traffic is gracefully removed from system"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="1120" y="1106" width="190" height="92" as="geometry"/>
       </mxCell>
-      <mxCell id="212" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;expect sip.sessionEnd event" vertex="1">
-         <mxGeometry as="geometry" height="40" width="158" x="842" y="1050" />
+      <mxCell id="212" value="&#xA;expect sip.sessionEnd event"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="842" y="1050" width="158" height="40" as="geometry"/>
       </mxCell>
-      <mxCell edge="1" id="213" parent="1" source="190" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="204" value="*">
-         <mxGeometry as="geometry" relative="1" />
+      <mxCell id="213" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;"
+              parent="1"
+              source="190"
+              target="204"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <mxCell edge="1" id="215" parent="1" source="216" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="192">
-         <mxGeometry as="geometry" relative="1">
+      <mxCell id="215"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="216"
+              target="192"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
             <Array as="points">
-               <mxPoint x="788" y="468" />
-               <mxPoint x="788" y="468" />
+               <mxPoint x="788" y="468"/>
+               <mxPoint x="788" y="468"/>
             </Array>
          </mxGeometry>
       </mxCell>
-      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="saveevent" id="216" label="saveevent" library="h3irs:utils">
-         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
-            <mxGeometry as="geometry" height="60" width="120" x="728" y="380" />
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary"
+                          function="saveevent"
+                          label="saveevent"
+                          library="h3irs:utils"
+                          id="216">
+         <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" parent="1"
+                 vertex="1">
+            <mxGeometry x="728" y="380" width="120" height="60" as="geometry"/>
          </mxCell>
       </typescript-library>
    </root>
