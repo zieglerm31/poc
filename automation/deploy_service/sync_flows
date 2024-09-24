@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -x
+
+authorization=`cat ocvas_token`
+curl -X POST --header 'Content-Type: application/json' --header "${authorization}" 'http://localhost:9080/sync-all-flows-to-database'

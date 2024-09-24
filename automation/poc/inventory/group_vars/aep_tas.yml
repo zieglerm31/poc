@@ -1,0 +1,188 @@
+---
+
+#General TAS, RTE & GW specific variables
+nexus_install_path: "/appl/aep/bin"   # main path for aep
+nexus_base_user: tasadmin   # aep operating & default user also used for securing files
+nexus_base_user_group: tasadmin   # aep operating & default group also used for securing files
+project_name: poc   #Name of the project
+
+rtengine_sentinel_primary: "10.20.110.17"   # Sentinel primary IP
+rtengine_sentinel_secondary: "10.20.110.18"   # Sentinel secondary IP
+rtengine_sentinel_port: 26380  # Sentinel listening port
+rtengine_queue_master: "queuedb"   # Master redis queue DB
+rtengine_monitor_master: "monitordb"   # Master redis monitor DB
+rtengine_config_db: "appdb"   # Master redis app DB - stores all configuration and so on
+rtengine_app_master: "{{rtengine_config_db}}"
+rtengine_sessions_store_master: "sessionsdb"
+rtengine_sess_queues_master: "{{rtengine_sessions_store_master}}"
+rtengine_sessions_store_master_other: "{{rtengine_sessions_store_master}}"
+rtengine_tracedb_master: "tracedb"
+rtengine_spread_master: "spreaddb"
+rtengine_profiles_master: "profilesdb"
+rtengine_lists_master: "listsdb"
+rtengine_cdr_master: "queuedb"
+rtengine_cdr_queue_name: "cdrQueue"
+rtengine_redis_read_timeout: "100"
+rtengine_redis_connect_timeout: "100"
+
+ingressqueue_suffix: "events"
+mainflow_egressqueue: "app_events"
+
+environment_name: POC
+gui_be_http_port: 8080
+gui_be_sentinel_port: 26380
+gui_be_http_primary_ip: 10.20.110.17
+gui_be_http_secondary_ip: 10.20.110.17
+
+nexus_alert_mode: redis
+nexus_snmp_not_running_oid: 1
+description_not_running: "{{project_name}} RTE is not running"
+alarm_template_not_running: "Test"
+consequence_not_running: "Service effecting"
+nexus_snmp_unmonitor_oid: 2
+description_unmonitor: "Description unmonitor"
+alarm_template_unmonitor: "Test unmonitor"
+consequence_unmonitor: "Service effecting unmonitor"
+
+
+
+
+#TAS:
+tas_see_id1: 1   # instance of the TAS e.g.: tas-see-1
+
+##RTE part for SIP
+#---------------#
+## instance definition RteGW
+process_name: POC
+rtengine_flows_local_storage_dir: /appl/aep/var/flows/{{project_name}} # there are stored the flows for runtime
+instance_id1: 1
+rte_ram_max: "500M"
+rte_ram_min: "300M"
+rte_threads: 8
+rtengine_gateway_worker_delay_threshold_ms: 23000
+rtengine_gateway_allowed_workers_in_delay: 1   # how many workers can be delayed without stopping the process
+rtengine_url_flows_primary: "file://{{rtengine_flows_local_storage_dir}}"
+rtengine_url_flows_secondary: "http://{{gui_be_http_secondary_ip}}:{{gui_be_http_port}}/scxml"
+tracing_db_label: "tracing-db"
+#maximum lock for a session in milliseconds; useful to prevent flow design error and create deadlocks
+rtengine_session_lock_duration_ms: "10000"
+rtengine_refresh_profile_time_ms: "60000"
+rtengine_tracing_max_trace_sessions_per_flow: "8000"
+
+nexus_log_path: /appl/logs/aep/sce
+nexus_runpids_folder: /appl/aep/var/runpids
+rtengine_gateway_log_path: "{{nexus_log_path}}"
+
+#Client part for HTTP
+#-------------------#
+## instance definition HttpClient
+httpCl_name: "HttpCl"
+httpClGW_ingressqueue_suffix: "ingress"
+gateway_http_client_timeout_ms: 10000
+gateway_http_client_target_ip: 172.20.7.109
+gateway_http_client_target_port: 9001
+gateway_http_client_keep_alive_ms: 2000
+
+#General for GWs
+#--------------#
+rtengine_timeout_traffic_brpop: 5
+rtengine_timeout_mgmt_brpop: 5
+gw_ram_max: "500M"
+gw_ram_min: "300M"
+gw_threads: 16
+rtengine_gateway_jmx_enabled: "true"
+rtengine_gateway_prometheus_enabled: "true"
+rtengine_gateway_prometheus_hotspot_metrics: "true"
+rtengine_gateway_force_default_queue: "false"
+nexus_log_path_archived: "{{nexus_log_path}}/archive"
+nexus_log_file_size: "20MB"
+nexus_log_max_history: 30
+nexus_log_total_size: "1GB"
+rtengine_log_level: "ALL"
+gateway_restart_command: "none"
+
+#CDR part
+#-------#
+cdr_path: "/appl/aep/var/cdr/{{project_name}}"
+CdrGW_name: cdrGW
+CdrGW_ingressqueue_suffix: "ingress"
+cdr_templates:
+       - name: default
+         path: "{{cdr_path}}"
+         maxAgeInMinutes: 10
+         estimatedCdrLineLength: 20
+         maxNbOfLines: 100
+         maxSizeInBytes: 1024000
+         closeSuffix: .done
+         openSuffix: .open
+         prefix: cdr
+         separatorEscapeSequenceInFieldContent: "’"
+         fieldSeparator: ","
+         useHeader: false
+         useFooter: false
+         useJsonFormat: true
+         useLinesCount: false
+         footer:
+           - T
+           - GENDATE
+           - GENTIME
+           - current:sessionID
+         header:
+           - H1
+           - GENDATE
+           - GENTIME
+           - 1
+           - \n
+           - H2
+           - RECORDTYPE
+           - RecordID
+           - sessionID
+           - requestNumber
+           - P_CHS_PARAM_ITEM
+           - P_CHS_PARAM_SUBTYPE
+           - P_CHS_EVENT_START_TIME
+           - P_CHS_IMSI
+           - P_CHS_MSC_ADDRESS_OLD
+           - P_CHS_MSC_ADDRESS_NEW
+           - P_CHS_SGSN_ADDRESS_OLD
+           - P_CHS_SGSN_ADDRESS_NEW
+           - P_CHS_SCP_ADDRESS
+           - P_CHS_MSISDN
+         fields:
+           - sessionID
+           - requestNumber
+           - P_CHS_PARAM_ITEM
+           - P_CHS_PARAM_SUBTYPE
+           - P_CHS_EVENT_START_TIME
+           - P_CHS_IMSI
+           - P_CHS_MSC_ADDRESS_OLD
+           - P_CHS_MSC_ADDRESS_NEW
+           - P_CHS_SGSN_ADDRESS_OLD
+           - P_CHS_SGSN_ADDRESS_NEW
+           - P_CHS_SCP_ADDRESS
+           - P_CHS_MSISDN
+
+#Prometheus Port for http (statistics)"
+#######################################
+## Used for following variables:
+#  metrics_httpport
+
+# {{prom_service_ID}} + {{prom_rte_ID}} or {{prom_httpserv_ID}} + filler (if instance_idX not 2 digits) + {{instance_idX}}
+# e.g.: 61 1 0 0 = 61100
+# e.g.: 61 2 0 1 = 61201
+
+prom_service_ID: 50
+prom_tas_ID_sip: 80
+prom_rte_sip_ID: 10
+prom_httpCl_ID: 25
+prom_cdr_ID: 7
+
+#access the groups ip of "rte_server_1"
+# https://stackoverflow.com/questions/21908363/ansible-read-inventory-hosts-and-variables-to-group-vars-all-file
+#- https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#:~:text=With%20hostvars%20%2C%20you%20can%20access,gathered%20(or%20cached)%20facts.
+# as groups['rte_server_1'] basically return a list of unique ip addresses ['172.23.11.19'] whereas groups['rte_server_1'][0] returns 172.23.11.19.
+prom_rte_server_1: "{{groups['rte_server_1'][0]}}"
+prom_gateway_server_1: "{{groups['gateway_server_1'][0]}}"
+prom_tas_server_1: "{{groups['tas_server_1'][0]}}"
+
+

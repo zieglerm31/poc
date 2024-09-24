@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -x
+token=`cat ocvas_token`
+curl -X POST --header 'Accept: application/json' --header "${token}" 'http://localhost:9080/load-all-scripts-from-filesystem-to-db'

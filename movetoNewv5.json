@@ -1,0 +1,6 @@
+{
+  "routingType": "random",
+  "maxSlotOtherRte": 16383,
+  "matchTypeInList": "suffix"
+}
+

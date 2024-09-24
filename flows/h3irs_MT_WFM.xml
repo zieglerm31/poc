@@ -1,0 +1,76 @@
+<mxGraphModel connect="1" dx="1434" dy="810" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="114" initial="1" label="Start&#10;MT_WFM" name="" traceCondition="" traceTimeout="">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="387" y="56" />
+      </mxCell>
+    </start>
+    <mxCell id="255" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;h3irs_MT_WFM&#10;&#10;Author: MaZi - HPE&#10;&#10;Based on specification:&#10;vTAS ICS International Roaming Service vIRS&#10;" vertex="1">
+      <mxGeometry as="geometry" height="124" width="260" x="30" y="26" />
+    </mxCell>
+    <wait-call-handler action="com.eitg.quasar.nexus.rta.callhandlers.RTAScxmlWaitForEventHandler" id="277" label="Wait">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="222" />
+      </mxCell>
+    </wait-call-handler>
+    <mxCell edge="1" id="278" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="277">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="279" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="387" y="639" />
+      </mxCell>
+    </stop>
+    <mxCell edge="1" id="282" parent="1" source="277" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;entryX=1;entryY=0.5;" target="318" value="callPoll.INVoiceCallInfoPollEvent">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="397" y="390" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="303" parent="1" source="277" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="325" value="callAnswered.InCallLeg">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="703" y="252" />
+          <mxPoint x="703" y="282" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="318" label="MT-REL" subflow="h3irs:h3irs_MT_REL">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="120" y="360" />
+      </mxCell>
+    </invoke-subflow>
+    <mxCell edge="1" id="319" parent="1" source="277" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.25;entryX=0.5;entryY=0;" target="318" value="callEnd">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="180" y="237" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="320" parent="1" source="277" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0.75;entryY=0;" target="318" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="321" parent="1" source="318" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="279" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="322" label="MT-TALK" subflow="h3irs:h3irs_MT_TALK">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="643" y="360" />
+      </mxCell>
+    </invoke-subflow>
+    <mxCell edge="1" id="324" parent="1" source="322" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="279" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="IRS" counter="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" id="325" label="MT Answered" name="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" type="MT_Answered">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="763" y="252" />
+      </mxCell>
+    </counter>
+    <mxCell edge="1" id="326" parent="1" source="325" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="322">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+  </root>
+</mxGraphModel>

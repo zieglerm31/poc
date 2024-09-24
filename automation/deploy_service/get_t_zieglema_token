@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username": "t_zieglema", "password": "t_zieglema"}' 'http://localhost:9080/nexus-api/uma/generate-token' | awk -F ":" '{print "authorization: Token "$2}'  | sed s/.$// | sed s/\"// | sed s/\"// > ocvas_token

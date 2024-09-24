@@ -1,0 +1,16 @@
+all:
+  children:
+    aep_tas:
+      children:
+        prometheus_1:
+          hosts:
+            10.20.110.17: # dc02labmgt01
+        gateway_server_1:
+          hosts:
+            10.20.110.18: # dc02labtas01
+        rte_server_1:
+          hosts:
+            10.20.110.18: # dc02labtas01
+        tas_server_1:
+          hosts:
+            10.20.110.18: # dc02labtas01

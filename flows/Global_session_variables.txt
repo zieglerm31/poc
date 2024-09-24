@@ -1,0 +1,30 @@
+
+Session-Variable-Name					Usage/Description
+*********************					*****************
+s_IDP									Stores the whole incoming IDP event
+s_CalledPartyNr							Stores the normalized CalledParty object in json format Object (source is incoming IDP)
+s_CallingPartyNr						Stores the normalized CallingParty object in json format Object (source is incoming IDP)
+s_callReferenceNumber					Stores the CAP calleReferenceNumber string (source is incoming IDP)
+s_callAttemptTime						Stores the IDP call attempt time in ms (source is incoming IDP)
+s_mscAddress							Stores the MSC Address in string format (source is incoming IDP)
+s_UnixTimeStamp							Stores the current UnixTimeStamp
+s_CCA									Stores the Credit Control Answer object from the network
+s_CC_Request_Number_A					Stores the last Request Number of last received CCA response object
+s_CC_Request_Number_A_plus_1			Stores the incremented (+1) value of last Request Number
+s_Multiple_Services_Credit_Control_A	Stores the Service Credit Control of CCA response object
+s_CC_Time_sec_A							Stores the CC-Time of CCA response number in seconds
+s_CamelEventTimeStamp					Stores the timestamp of last received Camel event
+s_ACR									Stores last received ApplyChargingReport event
+s_CC_prefix								Stores the Country Code of msc address as number/int
+s_SubPublicIDObj						Store the PublicID object of CPD4 subscriber from ldap response
+s_ServiceVOICEObj						Store the ServiceVOICE object of CPD4 subscriber from ldap response
+s_SmartSimObj
+s_SmartSimCheck
+s_SplitBillObj
+s_SplitBillCheck
+s_homeCountryCode						Stores the home country code of the subscriber
+s_Calling_tel_uri
+s_Called_tel_uri
+s_Event_duration						Stores reported duration of call
+s_vlrAddress							Visited vlr Address
+s_CCRRoleOfNode

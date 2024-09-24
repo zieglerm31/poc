@@ -1,0 +1,9 @@
+### this is an info file
+# this directory is used to store the documentation of the service - end to end of the entire service
+# GW configuration (ss7 or sip or  ...)
+# TAS configuration (TAS instances
+# SCE runtime, platform and gateway configuration
+# UIR and other dependenceis
+
+
+test the hotfixbranch

@@ -1,0 +1,12 @@
+
+## MGNT1 hsa the sip interface eth2 -- yeah
+## SIT IRS - SIP
+yum install /appl/data/gitdata/ocadmin/vtas_ops/sipp_simulator/sipp-3.5.1-1.el7.x86_64.rpm
+ send it directly to sipgw1 .. and then it forwards to the TAS instance
+if the route header is set as in Aparty_INVITE.xml
+
+sipp  172.20.208.36:5060 -sf SIP_OPTION-direct.xml -m 1
+
+sipp  172.20.208.2:5060 -sf Aparty_INVITE.xml -m 1
+
+

@@ -1,0 +1,156 @@
+---
+
+# role: is the SCE given ansible role for the process type
+# rtengine_instance_config_template: the template used for configuration for this role
+# rtengine_name: this name is used in files (config, logs, etc.), in the UI and for monit
+# rtengine_type: this name is used for monit and config file name
+# rtengine_force_update: a config change pushes the new configuration into redis
+#
+# freely defined 
+# tags: used to run only the role with the tag
+# tag description for this server
+# ------name        instances p VM        description -----------------------------------
+#    rte        2            dispatcher and flow processing engine    
+#    tibco        1            create tibco msg and send to tibco server and process response
+#    store_forward    1
+#    cdrs
+#    ldap_client
+#    timer
+#    http_server
+#    http_client
+
+- hosts: rte_server_1
+  tasks:
+  - name: Create flow directory for runtime/RTE
+    file:
+      path: "{{rtengine_flows_local_storage_dir}}"
+      state: directory
+      mode: "0777"
+      owner: "{{nexus_base_user}}"
+      group: "{{nexus_base_user_group}}"
+    tags:
+     - rte_1
+     - dir
+     
+  roles: 
+    ## Create config and Upload it to redis DB     
+  - role: nexus_queue_process_config
+    rtengine_ingress_queue: "{{project_name}}_sip_{{ingressqueue_suffix}}"   # specifies ingress_queue used by RTE service for receiving events
+    rtengine_config_name: "{{process_name}}_SIP_RTE_{{instance_id1}}"
+    #Use local template from project space
+    rtengine_config_template_folder: "{{playbook_dir}}"
+    rtengine_instance_config_template: "local_templates/rte_instance_occpsip.json.j2"
+    ###
+    rtengine_nb_threads: "{{rte_threads}}"
+    rtengine_egress_default_queue: "{{project_name}}_sip_{{mainflow_egressqueue}}"
+    rtengine_max_ram: "{{rte_ram_max}}"
+    rtengine_min_ram: "{{rte_ram_min}}"
+    rtengine_force_update: true
+    rtengine_text_analysis_queue_master: appdb
+    session_max_lifetime: "14405"
+    rtengine_config_description: Configuration for SIP RTE
+    rtengine_gateway_prometheus_http_port: "{{prom_service_ID}}{{prom_rte_sip_ID}}{{instance_id1}}"
+    tags:
+     - rte_1
+     - sip_1
+  
+    ## Create monit file and instantiates processes based on configuration by role nexus_queue_process_config
+    ## Use modified role so the alternative path is used for monit config scripts.
+  - role: nexus_rte_monit_instance
+    rtengine_name: "{{process_name}}_SIP_{{instance_id1}}"
+    rtengine_config_name: "{{process_name}}_SIP_RTE_{{instance_id1}}"
+    rtengine_type: "{{project_name}}_RTE"
+    rtengine_prometheus_metrics_port: "{{prom_service_ID}}{{prom_rte_sip_ID}}{{instance_id1}}"
+    tags:
+     - rte_1
+     - sip_1
+     
+## Generate scrape files (.json) for prometheus for all RTE processes (mgmt: /appl/prometheus/bin/nexus-prometheus/scrape/)      
+#- hosts: prometheus_1
+#  roles:         
+#  - role: nexus_prometheus_target
+#    target_name: "{{project_name}}_rte_0"
+#    target_type: "SIP"
+#    target_project: "{{project_name}}"
+#    target_host: "{{prom_rte_server_1}}"
+#    target_port: "{{prom_service_ID}}{{prom_rte_sip_ID}}{{instance_id1}}"
+#    target_role: "rte"
+#    nexus_install_path: /appl/prometheus/bin
+#    tags:
+#    - server_1
+#    - prometheus
+#
+- hosts: gateway_server_1
+  tasks:
+  - name: Create CDR directory if it does not exist
+    file:
+      path: "{{cdr_path}}"
+      state: directory
+      mode: "0777"
+      owner: "{{nexus_base_user}}"
+      group: "{{nexus_base_user_group}}"
+    tags:
+     - cdr
+     - cdr_1
+     
+  roles:
+##HttpCL
+    ## Create config and Upload it to redis DB     
+  - role: nexus_queue_process_config
+    rtengine_config_name: "{{process_name}}_HttpCl_{{instance_id1}}"
+    rtengine_nb_threads: "{{gw_threads}}"
+    rtengine_ingress_queue: "{{project_name}}_{{httpCl_name}}_{{httpClGW_ingressqueue_suffix}}"
+    rtengine_egress_default_queue: "{{project_name}}_sip_{{ingressqueue_suffix}}"
+    rtengine_max_ram: "{{gw_ram_max}}"
+    rtengine_min_ram: "{{gw_ram_min}}"
+    rtengine_config_template_folder:  "{{role_path}}/../templates"
+    rtengine_instance_config_template: gateway_http_client.json.j2
+    rtengine_config_description: Configuration for Http Client communication
+    rtengine_gateway_prometheus_http_port: "{{prom_service_ID}}{{prom_httpCl_ID}}0{{instance_id1}}"
+    tags:
+     - httpCl_1
+     
+    ## Create monit file and instantiates processes based on configuration by role nexus_queue_process_config
+    ## Use modified role so the alternative path is used for monit config scripts.
+  - role: nexus_gateway_monit_instance
+    rtengine_force_update: True
+    rtengine_name: "{{process_name}}_HttpCl_{{instance_id1}}"
+    rtengine_config_name: "{{process_name}}_HttpCl_{{instance_id1}}"
+    gateway_repl_port: "none"
+    gateway_implementation: "nexus-ldap/nexus-ldap.jar"
+    rtengine_type: "{{project_name}}_httpCl"
+    gateway_stop_command: stop_http_client_gw
+    rtengine_prometheus_metrics_port: "{{prom_service_ID}}{{prom_httpCl_ID}}{{instance_id1}}"
+    tags:
+     - httpCl_1
+
+##CDR
+    ## Create config and Upload it to redis DB     
+  - role: nexus_queue_process_config
+    rtengine_config_name: "{{process_name}}_{{CdrGW_name}}"
+    rtengine_nb_threads: "{{gw_threads}}"
+    rtengine_max_ram: "{{gw_ram_max}}"
+    rtengine_min_ram: "{{gw_ram_min}}"
+    rtengine_ingress_queue: "{{project_name}}_{{CdrGW_name}}_{{CdrGW_ingressqueue_suffix}}"
+    rtengine_egress_default_queue: "{{project_name}}_sip_{{ingressqueue_suffix}}"
+    rtengine_config_template_folder:  "{{role_path}}/../templates"
+    rtengine_instance_config_template: gateway_file_cdrs.json.j2
+    rtengine_config_description: This component receives CDR write events and writes it into a logfile
+    rtengine_force_update: true
+    rtengine_gateway_prometheus_http_port: "{{prom_service_ID}}{{prom_cdr_ID}}1{{instance_id1}}"
+    tags:
+     - cdr_1
+     
+    ## Create monit file and instantiates processes based on configuration by role nexus_queue_process_config
+    ## Use modified role so the alternative path is used for monit config scripts.
+  - role: nexus_gateway_monit_instance
+    rtengine_name: "{{process_name}}_{{CdrGW_name}}_{{instance_id1}}"
+    rtengine_config_name: "{{process_name}}_{{CdrGW_name}}"
+    gateway_repl_port: "none"
+    gateway_implementation: "nexus-cdr-gateway/nexus-cdr.jar"
+    rtengine_type: "{{project_name}}_cdr"
+    gateway_stop_command: "stop_cdr_instance"
+    gateway_restart_command: "none"
+    rtengine_prometheus_metrics_port: "{{prom_service_ID}}{{prom_cdr_ID}}1{{instance_id1}}"
+    tags:
+     - cdr_1

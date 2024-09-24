@@ -1,0 +1,14 @@
+{
+  "site_ID" : "sit_b52",
+  "refresh_ocsprofiles" : "300",
+  "diam_default_quota" : "300",
+  "session_ID_prefix" : "irs.b52-t;",
+  "diam_req_timeout_ms" : "5500",
+  "randomKeyEnd" : "5499",
+  "ldap_queue_name" : "h3irs_LdapClientGW_ingress",
+  "SCCPrelayGT_4_H3A" : "436990071530",
+  "diam_dest_realm" : "ics.mnc014.mcc232.3gppnetwork.org",
+  "diam_client_queue" : "h3irs_DiamClientGW_ingress",
+  "randomKeyStart" : "1000",
+  "refresh_lib" : "922337203685477580"
+}

@@ -1,0 +1,53 @@
+---
+- hosts: tas_server_1
+  roles:
+
+    - role: nexus-tas-sipgw
+      tags:
+        - server_1
+        - sip_jar
+        
+    - role: nexus-tassipgw-conf
+      sip_ip: "10.20.110.18"   # TAS SIP listening IP - specifies SIP IP used by sip_provider that will be configured on vTAS
+      sip_port: 5060   # TAS SIP listening PORT - specifies SIP port used by sip_provider that will be configured on vTAS
+      sip_transport: UDP # SIP transport protocol (UDP, TCP, SCTP - normally UDP is used)
+      redis_url: redis://{{rtengine_sentinel_primary}}:26380,{{rtengine_sentinel_secondary}}:26380/appdb/meta.qp.{{tasgw_instance_name}}   # redis_url: specifies redis queuedb database
+      redis_queue: "{{project_name}}_sip_{{ingressqueue_suffix}}"   # specifies egress_queue used by service for sending events
+      redis_queue_ingress: "{{project_name}}_notUsed"   # specifies ingress_queue used by service for receiving events
+      tas_ip: "{{sip_ip}}" # TAS SIP listening IP - specifies SIP IP used by sip_provider that will be configured on vTAS
+      redis_pool_size: 10   # specifies redis pool size
+      mrf_url: sip:msml@mydomain.com;transport=udp;lr   # specifies MRF URI - sip:msml@mydomain.com;transport=tcp;lr
+      ### 
+      local_file_template_full_path: "{{playbook_dir}}/local_templates/sipServiceHeaderRules.json.j2"   # default HeaderRule files
+      snf_LeVIP_IP_PORT: 5060   # Used by local_templates/sipServiceHeaderRules.json.j2 template
+      snf_MiVIP_IP_PORT: "10.20.110.19"   # Used by local_templates/sipServiceHeaderRules.json.j2 template
+      ###
+      instance_id: "{{tas_see_id1}}"   # specifies see instances that host the SipService e.g.: tas-see-1
+      template: "tasgw-template.json.j2"   # TAS GW template name
+      tasgw_instance_name: "{{process_name}}_tasGW_sip_{{tas_see_id1}}"   # Defines the TAS GW name (visible on AEP GUI)
+      tasgw_instance_description: "Redis TASgw for {{project_name}}"
+      rtengine_nb_threads: 8
+      metrics_httpport: "{{prom_service_ID}}{{prom_tas_ID_sip}}{{tas_see_id1}}"   # metrics http port used e.g.: by prometheus - grafana
+      tags:
+        - server_1
+        - sip_conf
+        
+
+        
+## Generate scrape files (.json) for prometheus for all TAS processes (mgmt: /appl/prometheus/bin/nexus-prometheus/scrape/)      
+#- hosts: prometheus_1
+#  roles:     
+#  - role: nexus_prometheus_target
+#    target_name: "{{project_name}}_tas_{{instance_id0}}"
+#    target_type: "tas_sip"
+#    target_project: "{{project_name}}"
+#    target_host: "{{prom_tas_server_1}}"
+#    target_port: "{{prom_service_ID}}{{prom_tas_ID_sip}}{{instance_id0}}"
+#    target_role: "tas"
+#    nexus_install_path: /appl/prometheus/bin
+#    become: yes
+#    become_method: sudo
+#    become_user: ocadmin
+#    tags:
+#    - server_1
+#    - prometheus

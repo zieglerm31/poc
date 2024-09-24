@@ -1,0 +1,94 @@
+<mxGraphModel connect="1" dx="2238" dy="1856" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="114" initial="1" label="Start&#10;MT_Setup" name="" traceCondition="" traceTimeout="">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="387" y="-13" />
+      </mxCell>
+    </start>
+    <mxCell id="255" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;h3irs_MT_Setup&#10;&#10;Author: MaZi - HPE&#10;&#10;Based on specification:&#10;vTAS ICS International Roaming Service vIRS&#10;" vertex="1">
+      <mxGeometry as="geometry" height="124" width="260" x="30" y="-43" />
+    </mxCell>
+    <undefined action="io.qsrlabs.nexus.diamhandlers.DiamSendRequest" id="261" label="Send CCR-I" queue="spel:#session[&quot;profile&quot;][&quot;diam_client_queue&quot;]" session="spel:#session[&quot;fsm-id&quot;]" template="credit-control-request-initial" template.Access-Network-Information="spel:#session[&quot;s_CC_Access_Network_Info&quot;]" template.CC-Request-Number="spel:0" template.CC-Request-Type="spel:1" template.CC-Time-Requested="spel:300" template.Called-Party-tel="spel:#session[&quot;s_Called_tel_uri&quot;]" template.Called-Vlr-Number="spel:#session[&quot;s_vlrAddress&quot;]" template.Calling-Party-tel="spel:#session[&quot;s_Calling_tel_uri&quot;]" template.Destination-Realm="spel:#session[&quot;profile&quot;][&quot;diam_dest_realm&quot;]" template.Event-Timestamp-UTC="spel:#session[&quot;s_UnixTimeStamp&quot;]" template.IMS-Charging-Identifier="spel:#session[&quot;s_chargingIdentifier&quot;]" template.Node-Functionality="spel:6" template.Roam-Type="spel:#session[&quot;s_Roam_Type&quot;]" template.Role-Of-Node="spel:#session[&quot;s_CCRRoleOfNode&quot;]" template.SDP-Media-Identifier="spel:#session[&quot;s_CCR_Media_Id&quot;]" template.Service-Context-ID="spel:#session[&quot;fsm-id&quot;]" template.Service-Identity="spel:#session[&quot;s_CC_Service_Identity&quot;]" template.Session-ID="spel:#session[&quot;profile&quot;][&quot;session_ID_prefix&quot;] + #session[&quot;s_callReferenceNumber&quot;] + &quot;;&quot; + #session[&quot;s_callAttemptTime&quot;]" template.SipReq-Timestamp="spel:#session[&quot;s_CallAttemptUnix&quot;]" template.Subscription-Id-Data="spel:#session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" template.User-Session-ID="spel:#session[&quot;s_callReferenceNumber&quot;] + &quot;-&quot; + #session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;] + &quot;-&quot; + #session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" timeout="spel:#session[&quot;profile&quot;][&quot;diam_req_timeout_ms&quot;]">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="247" />
+      </mxCell>
+    </undefined>
+    <mxCell edge="1" id="262" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="292">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="264" parent="1" source="261" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="269" value="diameter.272.response">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="validateCCA" id="269" label="Validate CCA" library="h3irs:handleDiameter">
+      <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="360" />
+      </mxCell>
+    </typescript-library>
+    <mxCell edge="1" id="273" parent="1" source="269" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="284" value="DiameterSuccess.2001">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="279" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="387" y="778" />
+      </mxCell>
+    </stop>
+    <undefined CIR="CALL_STOP_TIME" DURATION.amount="spel:#session[&quot;s_CC_Time_sec_A&quot;]" DURATION.final="" FCI="" action="com.eitg.quasar.nexus.occp.cap.handlers.ContinueCall" continue="true" id="284" label="Continue call" message="spel:#session[&quot;s_IDP&quot;]" name="">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="515" />
+      </mxCell>
+    </undefined>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="290" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="-85" y="350" />
+      </mxCell>
+    </stop>
+    <session-store action="io.qsrlabs.nexus.middleware.scxml.handlers.SessionVar" id="292" label="Store last CAP &#10;event message" name="" s_lastCAP_message="spel:#session[&quot;s_IDP&quot;]">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="130" />
+      </mxCell>
+    </session-store>
+    <mxCell edge="1" id="293" parent="1" source="292" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="261">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="294" label="MT-REL" subflow="h3irs:h3irs_MT_REL">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="112" y="360" />
+      </mxCell>
+    </invoke-subflow>
+    <mxCell edge="1" id="295" parent="1" source="269" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="294" value="DiameterError.*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="296" parent="1" source="261" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" target="294" value="diameter.*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="172" y="277" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="297" parent="1" source="261" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.25;entryX=0.25;entryY=0;" target="294" value="callEnd">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="298" parent="1" source="294" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="290" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="299" label="MT-WFM" subflow="h3irs:h3irs_MT_WFM">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="367" y="650" />
+      </mxCell>
+    </invoke-subflow>
+    <mxCell edge="1" id="300" parent="1" source="284" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="299" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="301" parent="1" source="299" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="279" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+  </root>
+</mxGraphModel>

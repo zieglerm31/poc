@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -x
+
+# Get user and namspace which executes scripts
+user=`whoami` 
+
+# Define the source for the upload for profile/businessentities
+# e.g.: body=/var/opt/sce/t_tomascfi/h3rop/businessentities/sgwprofile_h3rop_MGC
+body="../../businessentities/sgwprofile_h3irs_MGC"
+
+# Get the authorization token for authentication to SCE
+authorization=`cat ocvas_token`
+
+ 
+## name=<ns>:<proj>:sgwprofile_<project>
+## name=ocvas:h3rop:sgwprofile_h3rop
+curl -X POST --header 'Content-Type: application/json'  -H "${authorization}" "http://localhost:9080/hashmaps/update?name=${user}:h3irs:sgwprofile_h3irs&dbhint=profilesdb&folder=policy-chains-profiles" -d@${body} 

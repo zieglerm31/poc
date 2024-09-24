@@ -1,0 +1,13 @@
+### this is an info file
+# SCE UI writes the cucumber feature files into this directory
+# filename: *.feature
+
+# start scripts to execute the test cases
+# filename: execute_*.sh
+
+# directories for simulator
+# ./ussdsim/<files>
+# files are the configuration files for the simulator
+# files are the start/stop and configureation files for the simulator
+
+

@@ -1,0 +1,57 @@
+<mxGraphModel connect="1" dx="1313" dy="665" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+   <root>
+      <mxCell id="0" />
+      <mxCell id="1" parent="0" />
+      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="101" initial="1" label="Start (generic)" name="" traceCondition="" traceField="" traceList="" traceRandom="spel:1" traceTimeout="100">
+         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFF00;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="340" y="30" />
+         </mxCell>
+      </start>
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="104" isfinal="yes" label="Stop">
+         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="340" y="520" />
+         </mxCell>
+      </stop>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="dump_in_rtelog" id="106" label="write in RTE log&#10;Lib drop&#10;function dump_in_rtelog" library="h3rsi:drop">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="90" y="370" />
+         </mxCell>
+      </typescript-library>
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="drop" counter="spel:#event[&quot;event-type&quot;]" id="112" label="Stats - Start.&#10;Event.Drop" name="spel:#event[&quot;event-type&quot;]" type="eventtype">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="320" y="180" />
+         </mxCell>
+      </counter>
+      <mxCell id="128" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="drop flow from dispatcher" vertex="1">
+         <mxGeometry as="geometry" height="60" width="190" x="90" y="40" />
+      </mxCell>
+      <mxCell edge="1" id="145" parent="1" source="101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="112" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="146" parent="1" source="112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="148" value="">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+         </mxGeometry>
+      </mxCell>
+      <mxCell edge="1" id="147" parent="1" source="150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="104" value="*">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+         </mxGeometry>
+      </mxCell>
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="main" counter="spel:#event[&quot;event-additional-info&quot;][&quot;dispatcherresult&quot;]" id="148" label="Stats - Dispatcher Result" name="spel:#event[&quot;event-additional-info&quot;][&quot;dispatcherresult&quot;]" type="dispatcherresult">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="320" y="280" />
+         </mxCell>
+      </counter>
+      <mxCell edge="1" id="149" parent="1" source="148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="150">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+         </mxGeometry>
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary#fixed" function="dump_in_rtelog" id="150" label="write in RTE log" library="h3irs:drop" >
+         <mxCell parent="1" style="image;html=1;image=clipart/script.png;imageBackground=#FFB366;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="320" y="380" />
+         </mxCell>
+      </typescript-library>
+   </root>
+</mxGraphModel>

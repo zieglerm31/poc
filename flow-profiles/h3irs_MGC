@@ -1,0 +1,14 @@
+{
+  "diam_req_timeout_ms" : "5500",
+  "refresh_ocsprofiles" : "300",
+  "session_ID_prefix" : "irs.mgc-p;",
+  "diam_client_queue" : "h3irs_DiamClientGW_ingress",
+  "ldap_queue_name" : "h3irs_LdapClientGW_ingress",
+  "diam_default_quota" : "300",
+  "diam_dest_realm" : "ics.mnc005.mcc232.3gppnetwork.org",
+  "site_ID" : "prod_mgc",
+  "SCCPrelayGT_4_H3A" : "436990071505",
+  "randomKeyStart" : "5500",
+  "randomKeyEnd" : "9999",
+  "refresh_lib" : "922337203685477580"
+}

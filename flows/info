@@ -1,0 +1,5 @@
+### this is an info file
+# SCE loads the service flows from this directory into the runtime environment (redis)
+# filename: *.xml
+#
+

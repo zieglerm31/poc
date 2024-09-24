@@ -1,0 +1,316 @@
+<mxGraphModel connect="1" dx="2260" dy="751" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="2" initial="1" label="Start (generic)&#10;H3A_part" name="" traceCondition="" traceField="" traceList="" traceTimeout="">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="375" y="120" />
+      </mxCell>
+    </start>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="3" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="375" y="1467" />
+      </mxCell>
+    </stop>
+    <mxCell id="5" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;&#10;h3irs_H3A_part&#10;&#10;Author: MaZi - HPE&#10;&#10;Based on specification:&#10;vTAS ICS International Roaming Service vIRS&#10;" vertex="1">
+      <mxGeometry as="geometry" height="145" width="260" x="30" y="48" />
+    </mxCell>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="6" label="TEP part" subflow="h3irs:h3irs_TEP_logic">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="1320" />
+      </mxCell>
+    </invoke-subflow>
+    <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow" category="procedure" id="7" label="ReRouting&#10;CallControl" subflow="h3irs:h3irs_H3A_MOSetup">
+      <mxCell parent="1" style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="580" y="1320" />
+      </mxCell>
+    </invoke-subflow>
+    <mxCell edge="1" id="13" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="3" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="14" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="3" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <clojure-library action="io.qsrlabs.nexus.ldap.gui.LdapSearchHandler" base-dn="app=sdbRecord,dc=apd" cache-ttl-ms="spel:0" deref="never" filter-generator-auto="true" filter-generator-min-length="spel:3" filter-generator-name="sdbKey" filter-generator-value="spel:#session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;]" function="search" hierarchical="false" id="15" label="LDAP search&#10;SingleDB" library="io.qsrlabs.nexus.ldap.gui.handler" queue="spel:#session[&quot;profile&quot;][&quot;ldap_queue_name&quot;]" scope="one">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="490" />
+      </mxCell>
+    </clojure-library>
+    <mxCell edge="1" id="19" parent="1" source="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="39" value="ldap.status.1000">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="415" y="611" />
+          <mxPoint x="415" y="611" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="25" parent="1" source="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.25;" target="41" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="233" y="520" />
+          <mxPoint x="233" y="656" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="30" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="10" y="781" />
+      </mxCell>
+    </stop>
+    <mxCell edge="1" id="36" parent="1" source="67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="45">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+        <mxPoint as="sourcePoint" x="415" y="295" />
+      </mxGeometry>
+    </mxCell>
+    <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="validate_SingleDB_resp" id="39" label="Get and Check&#10;SingleDB response" library="h3irs:handleLDAP">
+      <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="641" />
+      </mxCell>
+    </typescript-library>
+    <mxCell edge="1" id="40" parent="1" source="39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.25;" target="91" value="Success">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="415" y="955" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <undefined action="com.eitg.quasar.nexus.occp.cap.handlers.AbortCall" cause="REJECTED" id="41" label="Terminate call" message="spel:#session[&quot;s_IDP&quot;]" name="">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-10" y="641" />
+      </mxCell>
+    </undefined>
+    <mxCell edge="1" id="42" parent="1" source="39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="41" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="43" parent="1" source="41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="30" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.ReRouteSmartSIM="spel:#session[&quot;s_Smart&quot;]==&quot;True&quot;" evt.ReRouteUCC="spel:#session[&quot;s_ServiceVOICEObj&quot;][&quot;vsid&quot;] == &quot;VOICEH3AUCC&quot;" id="45" label="Check if  &#10;SmartSIM oder UCC&#10;subscriber&#10;">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="357" />
+      </mxCell>
+    </event-generator-handler>
+    <mxCell edge="1" id="46" parent="1" source="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="15" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="47" parent="1" source="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="55" value="ReRouteSmartSIM">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="640" y="387" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.ReRoutCallControl="spel:#session[&quot;s_CallType&quot;].startsWith(&quot;MOC_&quot;)" evt.TEP="spel:#session[&quot;s_CallType&quot;].startsWith(&quot;CFMOC_&quot;)" id="51" label="Check if  &#10;TEP or ReRouting&#10;CallControl">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="1188" />
+      </mxCell>
+    </event-generator-handler>
+    <mxCell id="52" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;SmartSIM subcribers are&#10;always ReRouted " vertex="1">
+      <mxGeometry as="geometry" height="77" width="140" x="490" y="306" />
+    </mxCell>
+    <mxCell edge="1" id="53" parent="1" source="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="71" value="TEP">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="415" y="1258" />
+          <mxPoint x="318" y="1258" />
+          <mxPoint x="318" y="1218" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="54" parent="1" source="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="72" value="ReRoutCallControl">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="570" y="1218" />
+          <mxPoint x="570" y="1230" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <clojure-library action="io.qsrlabs.nexus.ldap.gui.LdapSearchHandler" base-dn="app=sdbRecord,dc=apd" cache-ttl-ms="spel:0" deref="never" filter-generator-auto="true" filter-generator-min-length="spel:3" filter-generator-name="sdbKey" filter-generator-value="spel:#session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;]" function="search" hierarchical="false" id="55" label="LDAP search&#10;SingleDB" library="io.qsrlabs.nexus.ldap.gui.handler" queue="spel:#session[&quot;profile&quot;][&quot;ldap_queue_name&quot;]" scope="one">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="580" y="495" />
+      </mxCell>
+    </clojure-library>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.RelaySmartSIMOld="spel:#event[&quot;body&quot;][0][&quot;sdbIMS&quot;].startsWith(&quot;ims.mnc099.&quot;)" id="56" label="Check if  &#10;SmartSIM Old in&#10;SingleDB SDBIMS">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="580" y="645" />
+      </mxCell>
+    </event-generator-handler>
+    <mxCell edge="1" id="57" parent="1" source="55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="56" value="ldap.status.1000">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="59" parent="1" source="56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" target="51" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="640" y="1130" />
+          <mxPoint x="445" y="1130" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <undefined CON.callingParty="" CON.callingParty.network-context="" CON.callingPartyCategory="" CON.destination="" CON.destination.network-context="" FCI="" FW.destination="spel:#session[&quot;profile&quot;][&quot;SCCPrelayGT_4_H3A&quot;]" FW.scheme="gt" action="com.eitg.quasar.nexus.occp.cap.handlers.LeaveCall" id="61" label="Leave call" message="spel:#session[&quot;s_IDP&quot;]" name="">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="842" y="645" />
+      </mxCell>
+    </undefined>
+    <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="62" isfinal="yes" label="Stop">
+      <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+        <mxGeometry as="geometry" height="80" width="80" x="1060" y="635" />
+      </mxCell>
+    </stop>
+    <mxCell edge="1" id="63" parent="1" source="55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="61" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="64" parent="1" source="56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="61" value="RelaySmartSIMOld">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="65" parent="1" source="61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="62" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="66" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;Except for old SmartSIM&#10;users which are marekd&#10;with mnc099 in SingleDB" vertex="1">
+      <mxGeometry as="geometry" height="77" width="140" x="650" y="715" />
+    </mxCell>
+    <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="checkVBSF" id="67" label="Validate vbsf settings&#10;of subscriber" library="h3irs:h3a">
+      <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="355" y="246" />
+      </mxCell>
+    </typescript-library>
+    <mxCell edge="1" id="68" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="67">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell id="69" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;Sets variables:&#10;&#10;session.s_VPN&#10;session.s_Smart&#10;s_VvpnId&#10;s_VvpnRo&#10;&#10;" vertex="1">
+      <mxGeometry as="geometry" height="112" width="140" x="200" y="220" />
+    </mxCell>
+    <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="IRS" counter="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" id="71" label="TEP Logic" name="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" type="H3A_TEP_CA">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="160" y="1188" />
+      </mxCell>
+    </counter>
+    <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="IRS" counter="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" id="72" label="Rerouting " name="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" type="H3A_Rerouting_CA">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="590" y="1200" />
+      </mxCell>
+    </counter>
+    <mxCell edge="1" id="73" parent="1" source="72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" target="7">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="74" parent="1" source="71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="6">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <clojure-library action="io.qsrlabs.nexus.ldap.gui.LdapSearchHandler" base-dn="app=sdbRecord,dc=apd" cache-ttl-ms="spel:0" deref="never" filter-generator-auto="true" filter-generator-min-length="spel:3" filter-generator-name="sdbKey" filter-generator-value="spel:&quot;E2&quot; + #session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" function="search" hierarchical="false" id="77" label="LDAP search&#10;SingleDB for E2 +CalledParty" library="io.qsrlabs.nexus.ldap.gui.handler" queue="spel:#session[&quot;profile&quot;][&quot;ldap_queue_name&quot;]" scope="one">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="140" y="1080" />
+      </mxCell>
+    </clojure-library>
+    <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="validate_SingleDB_resp" id="78" label="Get and Check&#10;SingleDB response" library="h3irs:handleLDAP">
+      <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-60" y="1110" />
+      </mxCell>
+    </typescript-library>
+    <mxCell edge="1" id="79" parent="1" source="77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;" target="78" value="ldap.status.1000">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.Block_Call="spel:#session[&quot;s_SingleDBrespBody&quot;][0][&quot;sdbNetwork&quot;]==&quot;BLOCK&quot;" id="80" label="Check for &#10;sdbNetwork&#10;is BLOCK">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-250" y="1040" />
+      </mxCell>
+    </event-generator-handler>
+    <mxCell edge="1" id="81" parent="1" source="78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="80" value="Success">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="-100" y="1140" />
+          <mxPoint x="-100" y="1070" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler" category="IRS" counter="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" id="82" label="BlockCall Counter" name="spel:#session[&quot;s_MSCRoamingRespBody&quot;][0][&quot;romscgt&quot;].toString()" type="H3A_BlockCall">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-240" y="900" />
+      </mxCell>
+    </counter>
+    <mxCell edge="1" id="83" parent="1" source="80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="82" value="Block_Call">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="85" parent="1" source="82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;entryX=0;entryY=0.5;" target="41">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.Startswith43="spel:#session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;].startsWith(&quot;43&quot;)" id="91" label="Check for &#10;calledParty starting with 43">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="160" x="-20" y="940" />
+      </mxCell>
+    </event-generator-handler>
+    <mxCell edge="1" id="95" parent="1" source="91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;entryX=0;entryY=0.25;" target="77" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="102" parent="1" source="91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="51" value="Startswith43">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="60" y="1060" />
+          <mxPoint x="415" y="1060" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="103" parent="1" source="78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=0;entryX=0.75;entryY=1;" target="82" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="-30" y="1080" />
+          <mxPoint x="-70" y="1080" />
+          <mxPoint x="-70" y="1035" />
+          <mxPoint x="-150" y="1035" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="104" parent="1" source="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.75;entryX=1;entryY=0.25;" target="51" value="ReRouteUCC">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="540" y="402" />
+          <mxPoint x="540" y="1203" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="107" parent="1" source="80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="113" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="-190" y="1400" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.barrcall="spel:#session[&quot;s_barrcall&quot;] == &quot;true&quot;" id="112" label="Check for &#10;barring zones">
+      <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-60" y="1630" />
+      </mxCell>
+    </event-generator-handler>
+    <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="checkvbarzone" id="113" label="check if vbarzone has the same value of sdbrecord s_barrzone" library="h3irs:h3a">
+      <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+        <mxGeometry as="geometry" height="60" width="120" x="-60" y="1370" />
+      </mxCell>
+    </typescript-library>
+    <mxCell edge="1" id="116" parent="1" source="113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="112">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+    <mxCell edge="1" id="118" parent="1" source="112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0.25;entryY=0;" target="82" value="barrcall">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="-450" y="1660" />
+          <mxPoint x="-450" y="890" />
+          <mxPoint x="-210" y="890" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="119" parent="1" source="112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.25;entryY=0;" target="51" value="*">
+      <mxGeometry as="geometry" relative="1">
+        <Array as="points">
+          <mxPoint x="130" y="1660" />
+          <mxPoint x="130" y="1150" />
+          <mxPoint x="385" y="1150" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell edge="1" id="120" parent="1" source="78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="113" value="*">
+      <mxGeometry as="geometry" relative="1" />
+    </mxCell>
+  </root>
+</mxGraphModel>

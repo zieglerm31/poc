@@ -1,0 +1,63 @@
+---
+
+- hosts: rte_server_1
+  tasks:
+    - name: Stop RTE process - Server 1
+      command: "{{nexus_install_path}}/nexus-monit/monit stop {{project_name}}_{{RteGW_name}}_{{instance_id0}}-rtengine"
+      
+    - name: Wait 8 seconds for RTE process is down  - Server 1
+      wait_for:
+        timeout: 8
+        
+    - name: Start RTE process - Server 1
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{RteGW_name}}_{{instance_id0}}-rtengine"
+      
+- hosts: gateway_server_1
+  tasks:
+    - name: Stop LDAP process - Server 1
+      command: "{{nexus_install_path}}/nexus-monit/monit stop {{project_name}}_{{LdapClientGW_name}}_{{instance_id0}}-gateway"
+      
+    - name: Wait 8 seconds for LDAP process is down - Server 1
+      wait_for:
+        timeout: 8
+        
+    - name: Start LDPAP process - Server 1
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{LdapClientGW_name}}_{{instance_id0}}-gateway"
+
+    - name: Wait 7 seconds for LDAP process is still down - Server 1
+      wait_for:
+        timeout: 7
+        
+    - name: Start LDPAP process - Server 1
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{LdapClientGW_name}}_{{instance_id0}}-gateway"
+      
+- hosts: rte_server_2
+  tasks:
+    - name: Stop RTE process - Server 2
+      command: "{{nexus_install_path}}/nexus-monit/monit stop {{project_name}}_{{RteGW_name}}_{{instance_id1}}-rtengine"
+      
+    - name: Wait 8 seconds for RTE process is down - Server 2
+      wait_for:
+        timeout: 8
+        
+    - name: Start RTE process - Server 2
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{RteGW_name}}_{{instance_id1}}-rtengine"
+      
+- hosts: gateway_server_2
+  tasks:
+    - name: Stop LDAP process - Server 2
+      command: "{{nexus_install_path}}/nexus-monit/monit stop {{project_name}}_{{LdapClientGW_name}}_{{instance_id1}}-gateway"
+      
+    - name: Wait 8 seconds for LDAP process is down - Server 2
+      wait_for:
+        timeout: 8
+        
+    - name: Start LDPAP process - Server 2
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{LdapClientGW_name}}_{{instance_id1}}-gateway"
+      
+    - name: Wait 7 seconds for LDAP process is still down - Server 2
+      wait_for:
+        timeout: 7
+        
+    - name: Start LDPAP process - Server 2
+      command: "{{nexus_install_path}}/nexus-monit/monit start {{project_name}}_{{LdapClientGW_name}}_{{instance_id1}}-gateway"

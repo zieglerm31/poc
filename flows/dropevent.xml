@@ -1,0 +1,22 @@
+<mxGraphModel connect="1" dx="1084" dy="659" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+   <root>
+      <mxCell id="0" />
+      <mxCell id="1" parent="0" />
+      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="2" initial="1" label="Start (generic)" name="" traceCondition="" traceField="" traceList="" traceTimeout="">
+         <mxCell parent="1" style="image;html=1;image=clipart/start-button.png" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="370" y="120" />
+         </mxCell>
+      </start>
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="3" isfinal="yes" label="Stop">
+         <mxCell parent="1" style="image;html=1;image=clipart/plain-stop.png" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="370" y="290" />
+         </mxCell>
+      </stop>
+      <mxCell edge="1" id="4" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="3">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell id="5" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;spacingTop=-6;fillColor=#FFFFCC;" value="Note&#10;the donothing flow or dropevent flow does not create a session and does not respond. so lowest possible used for overload handling to drop event.  " vertex="1">
+         <mxGeometry as="geometry" height="115" width="190" x="170" y="165" />
+      </mxCell>
+   </root>
+</mxGraphModel>

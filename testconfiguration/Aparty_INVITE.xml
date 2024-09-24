@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="h3irs RealInvite from IRS">
+  <send >
+
+<![CDATA[
+
+      INVITE tel:+436600608769 SIP/2.0
+      Via: SIP/2.0/UDP 172.20.208.42:5060;branch=[branch]
+      To: <tel:+436600608769>
+      From: <tel:+4366066082110>;tag=9OaZxDoV_0KCf-18637-2204-7-17
+      Call-ID: [call_id]
+      CSeq: 1 INVITE
+      Privacy: none
+      Contact: <sip:213.94.126.176:5060>
+      P-Asserted-Identity: <tel:+4366066082110>
+      P-Access-Network-Info: GPP-UTRAN; utran-cell-id-3gpp=27601f30d402bd;CS
+      P-Early-Media: supported
+      Route: <sip:irs.sit.vtas.as.drei.at;lr;mode=mo>,<sip:zteodi001400010BD0047100E009ED0213891E@172.20.208.8:5060;lr>
+      Allow: REGISTER,INVITE,ACK,CANCEL,BYE,OPTIONS,UPDATE,PRACK,REFER,INFO,NOTIFY,MESSAGE,SUBSCRIBE
+      Accept: application/sdp,	multipart/mixed
+      Supported: timer,100rel,histinfo,join,norefersub,replaces
+      User-Agent: SM-S906B-WH5 Samsung IMS 6.0
+      Session-Expires: 1800
+      Min-SE: 600
+      Accept-Contact: *;+g.3gpp.icsi-ref="urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel"
+      P-Preferred-Service: urn:urn-7:3gpp-service.ims.icsi.mmtel
+      Content-Type: multipart/mixed;boundary=4be227062af3zte
+      Content-Length: 2322
+
+      --4be227062af3zte
+      Content-Type: application/pidf+xml
+      Content-ID: <+4366066082231@ims.mnc005.mcc232.3gppnetwork.org>
+      
+      <?xml version="1.0" encoding="UTF-8"?>
+      <presence entity="+4366066082231@ims.mnc005.mcc232.3gppnetwork.org" xmlns="urn:ietf:params:xml:ns:pidf" xmlns:c="urn:ietf:params:xml:ns:pidf:cipid" xmlns:caps="urn:ietf:params:xml:ns:pidf:caps" xmlns:cl="urn:ietf:params:xml:ns:pidf:geopriv10:civicLoc" xmlns:con="urn:ietf:params:xml:ns:geopriv:conf" xmlns:gml="urn:opengis:specification:gml:schema-xsd:feature:v3.0" xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10" xmlns:op="urn:oma:xml:prs:pidf:oma-pres" xmlns:pdm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid">
+       <tuple>
+        <status>
+         <gp:geopriv>
+          <gp:location-info>
+           <gs:Circle srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gs="http://www.opengis.net/pidflo/1.0">
+            <gml:pos>48.5606809 16.0856604</gml:pos>
+            <gs:radius uom="urn:ogc:def:uom:EPSG::9001">20.0</gs:radius>
+           </gs:Circle>
+           <con:confidence pdf="normal">68</con:confidence>
+           <cl:civicAddress>
+            <cl:country>AT</cl:country>
+            <cl:A1>NiederÃ¶sterreich</cl:A1>
+            <cl:A3>Hollabrunn</cl:A3>
+            <cl:A6>Eduard MÃ¼ller Gasse</cl:A6>
+            <cl:HNO>10</cl:HNO>
+            <cl:PC>2020</cl:PC>
+           </cl:civicAddress>
+          </gp:location-info>
+          <gp:usage-rules>
+           <gp:retransmission-allowed>no</gp:retransmission-allowed>
+           <gp:retention-expiry>2023-09-01T06:14:18.01Z</gp:retention-expiry>
+          </gp:usage-rules>
+          <gp:method>FUSED</gp:method>
+         </gp:geopriv>
+        </status>
+        <timestamp>2023-08-31T08:19:49Z</timestamp>
+       </tuple>
+      </presence>
+      
+      --4be227062af3zte
+      Content-Type: application/sdp
+      Content-Disposition: session
+      Content-Length: 558
+      
+      v=0
+      o=SAMSUNG-IMS-UE 4720264596 871368456 IN IP4 172.20.165.30
+      s=SS VOIP
+      c=IN IP4 172.20.165.30
+      t=0 0
+      m=audio 29866 RTP/AVP 112 116 118 8 0 18 4 9 111 110
+      b=AS:42
+      b=RS:0
+      b=RR:2500
+      a=rtpmap:112 EVS/16000
+      a=fmtp:112 br=5.9-24.4;bw=nb-swb;ch-aw-recv=-1
+      a=rtpmap:116 AMR-WB/16000/1
+      a=fmtp:116 mode-change-capability=2;max-red=220
+      a=rtpmap:118 AMR/8000/1
+      a=fmtp:118 mode-change-capability=2;max-red=220
+      a=rtpmap:111 telephone-event/16000
+      a=fmtp:111 0-15
+      a=rtpmap:110 telephone-event/8000
+      a=fmtp:110 0-15
+      a=sendrecv
+      a=ptime:20
+      a=maxptime:240
+      
+      --4be227062af3zte--
+
+    ]]>
+</send>
+
+<recv optional="true" response="100"> </recv>
+<recv optional="true" response="180"> </recv>
+<!-- By adding rrs="true" (Record Route Sets), the route sets -->
+<!-- are saved and used for following messages sent. Useful to test -->
+<!-- against stateful SIP proxies/B2BUAs. -->
+<recv request="INVITE" crlf="true" rtd="true"> </recv>
+
+<!-- Packet lost can be simulated in any send/recv message by -->
+<!-- by adding the 'lost = "10"'. Value can be [1-100] percent. -->
+
+</scenario>
+
+

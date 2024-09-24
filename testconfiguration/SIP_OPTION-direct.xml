@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="h3irs RealInvite from IRS">
+  <send >
+
+<![CDATA[
+
+OPTIONS sip:h3irs_tt-b52-vtas3-seese-0001@172.20.208.36:5060 SIP/2.0
+Via: SIP/2.0/UDP 172.20.208.2;branch=z9hG4bK6eb1.9e48a247000000000000000000000000.0;rport
+To: <sip:h3irs_tt-b52-vtas3-seese-0003@172.20.208.36:5060>
+From: <sip:dispatcher@localhost>;tag=78a9a4d334cf88c9fbb17b6c5b660391-b32d
+CSeq: 10 OPTIONS
+Call-ID: 3874447d04a1c3ef-1896@172.20.208.3
+Max-Forwards: 70
+Content-Length: 0
+User-Agent: kamailio (5.2.7 (x86_64/linux))
+
+   ]]>
+</send>
+
+<recv optional="true" response="404"> </recv>
+<recv response="200"> </recv>
+
+
+</scenario>
+
+

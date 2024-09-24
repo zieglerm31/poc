@@ -1,0 +1,109 @@
+{
+	"description":"This is the SIP header rules configuration file for  application.",
+	 "include":[ "/etc/opt/OC/hpoc-scif-sip/headerRules.json"
+	 ],
+	"rulesSets":{
+	  "SipServiceSpecificRulesSet":{
+	  "description":"Global Header rules which are applicable to CVS. ",
+	  "parent": ["GlobalRules"	] ,
+		"rules":[
+              {
+                 "description":"Overrides the address of the From header for outgoing calls",
+                 "name":"From",
+                 "condition":"*/OUTGOING-OUT::r.from=?get();r.newAddress=?c.newFromAddress;r.updatedFrom=?setAddress(r.from,r.newAddress);set(r.updatedFrom)"
+              },
+              {
+                  "name":"History-Info",
+                  "condition":"*/OUTGOING-OUT:!ACK|CANCEL|CANCEL#*:set(newHistInfoFromScifAPI)"
+              },
+
+               {
+                  "name":"History-Info",
+                  "condition":"*/OUTGOING-IN::l.BhistInfo=get()"
+              },
+
+
+              {
+                    "name":"History-Info",
+                    "condition":"*/INCOMING-OUT::set(ol.BhistInfo)"
+              },
+
+              {
+                    "name":"Reason",
+                    "condition":"*/INCOMING-IN|*/OUTGOING-IN::c.byeReason=get()"
+              },
+              {
+                    "name":"User-to-User",
+                    "condition":"*/OUTGOING-IN::c.byeUtu=get()"
+              },
+              {
+                    "name":"Reason",
+                    "condition":"*/INCOMING-OUT:*#4xx|*#5xx|*#6xx:set(newReasonFromScifApi)"
+              },
+								
+							
+              {
+                    "name":"Call-Info",
+                    "condition":"*/INCOMING-OUT:*#1xx|*#200:checkExists(callInfoDisabled);del"
+              },
+             {
+                    "name":"Retry-After",
+                    "condition":"*/INCOMING-OUT:*#500|*#503|*#404|*#413|*#480|*#486|*#600|*#603:del"
+            },
+              {
+                    "name":"Privacy",
+                    "value":"none",
+                    "condition":"*/OUTGOING-IN::r.privacy_none=;r.privacy_receive=get();checkEquals(r.privacy_none,r.privacy_receive);c.privacy_none=get()"
+              },
+             {
+                  "name":"Privacy",
+                   "value":[
+                          "id",
+                          "history"
+                  ],
+                "condition":"*/INCOMING-OUT::checkExists(c.privacy_none);r.privacy_toBeSet=;set(r.privacy_toBeSet)"
+              },
+             {
+                  "name":"Privacy",
+                   "value":[
+                                  "id",
+                                  "history"
+                          ],
+                  "condition":"*/INCOMING-OUT::r.add=;r.privacy_receive=get();r.add=mergeUnique(r.privacy_receive,r.add);set(r.add)"
+              },
+               {
+                    "name":"Allow",
+                     "value":"INFO",
+                    "condition":"*/OUTGOING-OUT::checkNotExists(isMRF);r.allow_info=;r.allow_info_receive=get();r.resulted_allow=filterNotIn(r.allow_info,r.allow_info_receive);set(r.resulted_allow)"
+              },
+              {
+                    "name":"Allow",
+                     "value":"INFO",
+                    "condition":"*/INCOMING-OUT::checkNotExists(isMRF);r.allow_info=;r.allow_info_receive=get();r.resulted_allow=filterNotIn(r.allow_info,r.allow_info_receive);set(r.resulted_allow)"
+              },
+			  {
+                    "name": "Route",
+                    "condition": "*/PROXY-OUT:INVITE:delFirst"
+              },
+			  {
+                    "name": "Route",
+                    "value": "<sip:{{snf_LeVIP_IP_PORT}};transport=udp;lr>",
+                    "condition": "*/PROXY-OUT:INVITE:addFirst"
+               },
+               {
+                    "name": "Route",
+                    "value": "<sip:{{snf_MiVIP_IP_PORT}};transport=udp;lr>",
+                    "condition": "*/PROXY-OUT:INVITE:addFirst"
+               },
+              {
+                "description": "Sets the Request-Uri for proxied INVITE.",
+                "name": "REQUEST-URI",
+                "condition": "*/PROXY-OUT:INVITE:set(proxyRURI)"
+              }
+          ]
+          }
+
+
+        }
+     }
+

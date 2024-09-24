@@ -1,0 +1,6 @@
+{
+  "routingType": "spel",
+  "maxSlotOtherRte": 0,
+  "matchTypeInList": "suffix"
+}
+

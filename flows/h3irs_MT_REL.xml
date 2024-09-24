@@ -1,0 +1,259 @@
+<mxGraphModel connect="1" dx="1528" dy="759" fold="1" grid="1" gridSize="10" guides="1" page="1" pageHeight="1169" pageScale="1" pageWidth="826" tooltips="1">
+   <root>
+      <mxCell id="0" />
+      <mxCell id="1" parent="0" />
+      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler" id="114" initial="1" label="Start&#10;MT_REL" name="" traceCondition="" traceTimeout="">
+         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="387" y="157" />
+         </mxCell>
+      </start>
+      <mxCell id="255" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;h3irs_MT_REL&#10;&#10;Author: MaZi - HPE&#10;&#10;Based on specification:&#10;vTAS ICS International Roaming Service vIRS&#10;" vertex="1">
+         <mxGeometry as="geometry" height="124" width="260" x="30" y="26" />
+      </mxCell>
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler" id="279" isfinal="yes" label="Stop">
+         <mxCell parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CC0000;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="387" y="1443" />
+         </mxCell>
+      </stop>
+      <wait-call-handler action="com.eitg.quasar.nexus.rta.callhandlers.RTAScxmlWaitForEventHandler" id="280" label="Wait">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="782" y="553" />
+         </mxCell>
+      </wait-call-handler>
+      <mxCell edge="1" id="282" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=1;entryX=0.5;entryY=0;" target="365" value="callPoll.INVoiceCallInfoPollEvent">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="455" y="330" />
+               <mxPoint x="842" y="330" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="applyChargingReport" id="286" label="handle&#10;ApplyChargingReport" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="1449" y="380" />
+         </mxCell>
+      </typescript-library>
+      <wait-call-handler action="com.eitg.quasar.nexus.rta.callhandlers.RTAScxmlWaitForEventHandler" id="292" label="Wait">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="1449" y="222" />
+         </mxCell>
+      </wait-call-handler>
+      <mxCell edge="1" id="295" parent="1" source="292" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="286" value="callPoll.INVoiceChargingPollEvent">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <undefined action="com.eitg.quasar.nexus.occp.cap.handlers.AbortCall" cause="REJECTED" id="317" label="Terminate call" message="spel:#session[&quot;s_BSCM_Disconnect&quot;]" name="">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="782" y="827" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="319" parent="1" source="317" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="370" value="callEnd">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="842" y="950" />
+               <mxPoint x="842" y="950" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="callEnd" id="358" label="handle&#10;callEnd" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="100" y="827" />
+         </mxCell>
+      </typescript-library>
+      <undefined action="io.qsrlabs.nexus.diamhandlers.DiamSendRequest" continue="true" id="359" label="Send CCR-T" queue="spel:#session[&quot;profile&quot;][&quot;diam_client_queue&quot;]" session="spel:#session[&quot;fsm-id&quot;]" template="credit-control-request-terminate" template.3GPP-Reporting-Reason="spel:2" template.Access-Network-Information="spel:#session[&quot;s_CC_Access_Network_Info&quot;]" template.CC-Request-Number="spel:#session[&quot;s_CC_Request_Number_A&quot;][&quot;value&quot;] + 1" template.CC-Request-Type="spel:3" template.CC-Time-Consumed="spel:#session[&quot;s_Event_duration&quot;]" template.CC-Time-Requested="spel:#session[&quot;s_CC_Time_sec_A&quot;]" template.Called-Party-tel="spel:#session[&quot;s_Called_tel_uri&quot;]" template.Called-Vlr-Number="spel:#session[&quot;s_vlrAddress&quot;]" template.Calling-Party-tel="spel:#session[&quot;s_Calling_tel_uri&quot;]" template.Cause-Code="spel:#session[&quot;s_CallRelCause&quot;]" template.Cause-Location="spel:#session[&quot;s_CauseLocation&quot;]" template.Destination-Realm="spel:#session[&quot;profile&quot;][&quot;diam_dest_realm&quot;]" template.Event-Timestamp-UTC="spel:#session[&quot;s_UnixTimeStamp&quot;]" template.IMS-Charging-Identifier="spel:#session[&quot;s_chargingIdentifier&quot;]" template.Node-Functionality="spel:6" template.Roam-Type="spel:#session[&quot;s_Roam_Type&quot;]" template.Role-Of-Node="spel:#session[&quot;s_CCRRoleOfNode&quot;]" template.SDP-Media-Identifier="spel:#session[&quot;s_CCR_Media_Id&quot;]" template.Service-Context-ID="spel:#session[&quot;fsm-id&quot;]" template.Service-Identity="spel:#session[&quot;s_CC_Service_Identity&quot;]" template.Session-ID="spel:#session[&quot;profile&quot;][&quot;session_ID_prefix&quot;] + #session[&quot;s_callReferenceNumber&quot;] + &quot;;&quot; + #session[&quot;s_callAttemptTime&quot;]" template.SipReq-Timestamp="spel:#session[&quot;s_CamelEventTimeStamp&quot;]" template.Subscription-Id-Data="spel:#session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" template.User-Session-ID="spel:#session[&quot;s_callReferenceNumber&quot;] + &quot;-&quot; + #session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;] + &quot;-&quot; + #session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" timeout="spel:#session[&quot;profile&quot;][&quot;diam_req_timeout_ms&quot;]">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="100" y="1116" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="360" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;entryX=0.5;entryY=0;" target="358" value="callEnd">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="399" y="330" />
+               <mxPoint x="160" y="330" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <mxCell edge="1" id="361" parent="1" source="358" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="359">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="callInfoEvent" id="365" label="handle&#10;callInfoEvent" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="782" y="389" />
+         </mxCell>
+      </typescript-library>
+      <mxCell edge="1" id="366" parent="1" source="365" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="280">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="bcsmDisconnect" id="368" label="handle&#10;tDisconnect" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="782" y="690" />
+         </mxCell>
+      </typescript-library>
+      <mxCell edge="1" id="369" parent="1" source="368" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="317">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <undefined action="io.qsrlabs.nexus.diamhandlers.DiamSendRequest" continue="true" id="370" label="Send CCR-T" queue="spel:#session[&quot;profile&quot;][&quot;diam_client_queue&quot;]" session="spel:#session[&quot;fsm-id&quot;]" template="credit-control-request-terminate" template.3GPP-Reporting-Reason="spel:2" template.Access-Network-Information="spel:#session[&quot;s_CC_Access_Network_Info&quot;]" template.CC-Request-Number="spel:#session[&quot;s_CC_Request_Number_A&quot;][&quot;value&quot;] + 1" template.CC-Request-Type="spel:3" template.CC-Time-Consumed="spel:#session[&quot;s_Event_duration&quot;]" template.CC-Time-Requested="spel:#session[&quot;s_CC_Time_sec_A&quot;]" template.Called-Party-tel="spel:#session[&quot;s_Called_tel_uri&quot;]" template.Called-Vlr-Number="spel:#session[&quot;s_vlrAddress&quot;]" template.Calling-Party-tel="spel:#session[&quot;s_Calling_tel_uri&quot;]" template.Cause-Code="spel:#session[&quot;s_CallRelCause&quot;]" template.Cause-Location="spel:#session[&quot;s_CauseLocation&quot;]" template.Destination-Realm="spel:#session[&quot;profile&quot;][&quot;diam_dest_realm&quot;]" template.Event-Timestamp-UTC="spel:#session[&quot;s_UnixTimeStamp&quot;]" template.IMS-Charging-Identifier="spel:#session[&quot;s_chargingIdentifier&quot;]" template.Node-Functionality="spel:6" template.Roam-Type="spel:#session[&quot;s_Roam_Type&quot;]" template.Role-Of-Node="spel:#session[&quot;s_CCRRoleOfNode&quot;]" template.SDP-Media-Identifier="spel:#session[&quot;s_CCR_Media_Id&quot;]" template.Service-Context-ID="spel:#session[&quot;fsm-id&quot;]" template.Service-Identity="spel:#session[&quot;s_CC_Service_Identity&quot;]" template.Session-ID="spel:#session[&quot;profile&quot;][&quot;session_ID_prefix&quot;] + #session[&quot;s_callReferenceNumber&quot;] + &quot;;&quot; + #session[&quot;s_callAttemptTime&quot;]" template.SipReq-Timestamp="spel:#session[&quot;s_callStopTime&quot;]" template.Subscription-Id-Data="spel:#session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" template.User-Session-ID="spel:#session[&quot;s_callReferenceNumber&quot;] + &quot;-&quot; + #session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;] + &quot;-&quot; + #session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" timeout="spel:#session[&quot;profile&quot;][&quot;diam_req_timeout_ms&quot;]">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="782" y="1116" />
+         </mxCell>
+      </undefined>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="callEnd" id="375" label="handle&#10;callEnd" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="995" y="690" />
+         </mxCell>
+      </typescript-library>
+      <mxCell edge="1" id="376" parent="1" source="280" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="375" value="callEnd">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="377" parent="1" source="375" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="370">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell id="378" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;Analyze Event" vertex="1">
+         <mxGeometry as="geometry" height="50" width="150" x="467" y="132" />
+      </mxCell>
+      <mxCell id="381" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;Call ended during setup phase e.g.: TCAP Abort, TCAP End, no call controll needed or &#10;A-Party disconnected answered call" vertex="1">
+         <mxGeometry as="geometry" height="110" width="150" x="85" y="420" />
+      </mxCell>
+      <undefined action="com.eitg.quasar.nexus.occp.cap.handlers.AbortCall" cause="REJECTED" id="383" label="Terminate call" message="spel:#session[&quot;s_lastCAP_message&quot;]" name="">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="367" y="690" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="385" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="383" value="diameter.*">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+         </mxGeometry>
+      </mxCell>
+      <mxCell id="382" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;diameter errors received" vertex="1">
+         <mxGeometry as="geometry" height="50" width="150" x="352" y="572" />
+      </mxCell>
+      <mxCell edge="1" id="387" parent="1" source="280" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="368" value="callStart.DISCONNECTED">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="anyBCSMEvent" id="388" label="handle&#10;any callStart event" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="588" y="690" />
+         </mxCell>
+      </typescript-library>
+      <mxCell edge="1" id="389" parent="1" source="280" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;" target="388" value="callStart.*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <undefined action="com.eitg.quasar.nexus.occp.cap.handlers.AbortCall" cause="REJECTED" id="391" label="Terminate call" message="spel:#session[&quot;s_anyBCSM_event&quot;]" name="">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="588" y="827" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="394" parent="1" source="388" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;" target="391">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="395" parent="1" source="391" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="370" value="callEnd">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="callEnd" id="396" label="handle&#10;callEnd" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="367" y="827" />
+         </mxCell>
+      </typescript-library>
+      <undefined action="io.qsrlabs.nexus.diamhandlers.DiamSendRequest" continue="true" id="398" label="Send CCR-T" queue="spel:#session[&quot;profile&quot;][&quot;diam_client_queue&quot;]" session="spel:#session[&quot;fsm-id&quot;]" template="credit-control-request-terminate" template.3GPP-Reporting-Reason="spel:2" template.Access-Network-Information="spel:#session[&quot;s_CC_Access_Network_Info&quot;]" template.CC-Request-Number="spel:#session[&quot;s_CC_Request_Number_A&quot;][&quot;value&quot;] + 1" template.CC-Request-Type="spel:3" template.CC-Time-Consumed="spel:#session[&quot;s_Event_duration&quot;]" template.CC-Time-Requested="spel:#session[&quot;s_CC_Time_sec_A&quot;]" template.Called-Party-tel="spel:#session[&quot;s_Called_tel_uri&quot;]" template.Called-Vlr-Number="spel:#session[&quot;s_vlrAddress&quot;]" template.Calling-Party-tel="spel:#session[&quot;s_Calling_tel_uri&quot;]" template.Cause-Code="spel:#session[&quot;s_CallRelCause&quot;]" template.Cause-Location="spel:#session[&quot;s_CauseLocation&quot;]" template.Destination-Realm="spel:#session[&quot;profile&quot;][&quot;diam_dest_realm&quot;]" template.Event-Timestamp-UTC="spel:#session[&quot;s_UnixTimeStamp&quot;]" template.IMS-Charging-Identifier="spel:#session[&quot;s_chargingIdentifier&quot;]" template.Node-Functionality="spel:6" template.Roam-Type="spel:#session[&quot;s_Roam_Type&quot;]" template.Role-Of-Node="spel:#session[&quot;s_CCRRoleOfNode&quot;]" template.SDP-Media-Identifier="spel:#session[&quot;s_CCR_Media_Id&quot;]" template.Service-Context-ID="spel:#session[&quot;fsm-id&quot;]" template.Service-Identity="spel:#session[&quot;s_CC_Service_Identity&quot;]" template.Session-ID="spel:#session[&quot;profile&quot;][&quot;session_ID_prefix&quot;] + #session[&quot;s_callReferenceNumber&quot;] + &quot;;&quot; + #session[&quot;s_callAttemptTime&quot;]" template.SipReq-Timestamp="spel:#session[&quot;s_CamelEventTimeStamp&quot;]" template.Subscription-Id-Data="spel:#session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" template.User-Session-ID="spel:#session[&quot;s_callReferenceNumber&quot;] + &quot;-&quot; + #session[&quot;s_CallingPartyNrNorm&quot;][&quot;user&quot;] + &quot;-&quot; + #session[&quot;s_CalledPartyNrNorm&quot;][&quot;user&quot;]" timeout="spel:#session[&quot;profile&quot;][&quot;diam_req_timeout_ms&quot;]">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="367" y="1116" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="399" parent="1" source="383" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="396" value="callEnd">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <event-generator-handler action="io.qsrlabs.nexus.middleware.scxml.handlers.EvaluateParamsAndGenerateEvent" evt.maxCallDuration="spel:#session[&quot;s_maxdur&quot;] == 1" evt.no_CCR-T="spel:#session[&quot;s_CC_Request_Type_A&quot;][&quot;value&quot;] == 1" id="405" label="Expression Evaluator">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="367" y="970" />
+         </mxCell>
+      </event-generator-handler>
+      <mxCell edge="1" id="406" parent="1" source="396" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="405">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="407" parent="1" source="405" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="398" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="408" parent="1" source="405" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" target="279" value="no_CCR-T">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="240" y="1000" />
+               <mxPoint x="240" y="1483" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <mxCell id="409" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;" value="&#10;In case of CCR-I fails eg&#10;Rating fails.&#10;No CCR-T should be sent" vertex="1">
+         <mxGeometry as="geometry" height="80" width="150" x="215" y="900" />
+      </mxCell>
+      <wait-call-handler action="com.eitg.quasar.nexus.rta.callhandlers.RTAScxmlWaitForEventHandler" id="410" label="Wait">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="367" y="1266" />
+         </mxCell>
+      </wait-call-handler>
+      <mxCell edge="1" id="411" parent="1" source="398" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="410" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="412" parent="1" source="370" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="410" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="413" parent="1" source="359" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="410" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="414" parent="1" source="410" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.75;entryX=1;entryY=0;" target="279" value="diameter.272.response">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="520" y="1311" />
+               <mxPoint x="520" y="1385" />
+               <mxPoint x="455" y="1385" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <mxCell edge="1" id="415" parent="1" source="410" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.75;entryX=0;entryY=0;" target="279" value="*">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="330" y="1311" />
+               <mxPoint x="330" y="1385" />
+               <mxPoint x="399" y="1385" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <mxCell edge="1" id="416" parent="1" source="405" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.75;entryX=0.5;entryY=0;" target="279" value="maxCallDuration">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="290" y="1015" />
+               <mxPoint x="290" y="1443" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <typescript-library action="io.qsrlabs.nexus.middleware.scxml.handlers.TypeScriptLibrary" function="anyBCSMEvent" id="417" label="handle&#10;any callStart event" library="h3irs:handleTCAPEvents">
+         <mxCell parent="1" style="whiteSpace=wrap;html=1;fillColor=#FFB366;rounded=1;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="1200" y="690" />
+         </mxCell>
+      </typescript-library>
+      <mxCell edge="1" id="418" parent="1" source="280" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=0;entryX=0.5;entryY=0;" target="417" value="callStart.BUSY">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="872" y="543" />
+               <mxPoint x="1260" y="543" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <mxCell edge="1" id="420" parent="1" source="417" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="424">
+         <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+               <mxPoint x="1260" y="855" />
+               <mxPoint x="1350" y="855" />
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <undefined CIR="NONE" DURATION.amount="" DURATION.final="" FCI="" action="com.eitg.quasar.nexus.occp.cap.handlers.ContinueCall" id="424" label="Continue call" message="spel:#session[&quot;s_anyBCSM_event&quot;]" name="">
+         <mxCell parent="1" style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;" vertex="1">
+            <mxGeometry as="geometry" height="60" width="120" x="1290" y="960" />
+         </mxCell>
+      </undefined>
+      <mxCell edge="1" id="425" parent="1" source="424" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.75;" target="370" value="*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+      <mxCell edge="1" id="426" parent="1" source="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.75;entryY=0;" target="383" value="DiameterError.*">
+         <mxGeometry as="geometry" relative="1" />
+      </mxCell>
+   </root>
+</mxGraphModel>

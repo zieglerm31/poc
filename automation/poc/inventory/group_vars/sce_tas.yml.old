@@ -1,0 +1,330 @@
+---
+
+#SNF and TAS specifics for "service_tas_deploy.yml" and "service_snf_gateway_integrate.yml" 
+TAS_hostname_1: tt-b52-vtas3-seese-0003
+TAS_hostname_2: tt-b52-vtas3-seese-0004
+SNF_LeVIP_IP_PORT: 172.20.208.11:5060     # tt-b52-vtas3-sipgw - SIP external virtual IP (eVIP) for IMS/ICS network on eth2 for h3rsi service and for communication to TAS backends
+TAS_sip_ip_1: 172.20.208.36               # tt-b52-vtas3-seese-0003 - SIP TAS backend IP for communication to SIP internal virtual IP (iVIP) of SNF
+TAS_sip_ip_2: 172.20.208.37               # tt-b52-vtas3-seese-0004 - SIP TAS backend IP for communication to SIP internal virtual IP (iVIP) of SNF
+TAS_sip_port: 5060                        # tt-b52-vtas3-seese - TAS backend SIP port
+TAS_SIP_instance_id: 2                    # The TAS instance id on the seese VMs seen with cmd: see-check => see-5 or emscli => app_server list =>  instance-id:5
+TAS_mrf_url: sip:msml@dummy.com;transport=udp;lr     #MRF Request-URI
+
+#SS7/M3UA/Camel - USPM and TAS specifics for "service_tas_deploy.yml" and "service_uspm_gateway_integrate.yml"
+TAS_M3UA_GT: 436990081583
+TAS_M3UA_DPC: 1580
+TAS_M3UA_SSN: 146
+TAS_SS7_StackName: SS7_Stack_1
+TAS_M3UA_instance_id: 1
+rtengine_nb_threads: 8
+use_of_gt_sccp_address: INCOMING                                                                                                                                                               
+
+#SCE specifics for "service_sce_process_deploy.yml"
+###################################################
+
+#Generic part
+#-----------#
+#
+# Timezone:  Must be a valid Linux timezone.  https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+#
+timezone: "UTC"
+env_path_java: "/usr/bin/java"
+monit_check_frequency_in_cycles: "5"
+rtengine_start_timeout: "5"
+rtengine_stop_timeout: "10"
+rtengine_max_restarts: "5"
+rtengine_restart_cycles_limit: "20"
+gateway_restart_command: "none"
+nexus_install_path: /appl/vtas/bin
+nexus_log_path: /appl/logs/vtas/sce
+nexus_runpids_folder: /appl/vtas/var/runpids
+nexus_base_user: ocadmin
+nexus_base_user_group: ocadmin
+rtengine_gateway_log_path: "{{nexus_log_path}}"
+nexus_sentinel_port: 26380
+nexus_monit_http_port: 7000
+
+nexus_alert_mode: redis
+nexus_snmp_not_running_oid: 1
+description_not_running: "{{project_name}} RTE is not running"
+alarm_template_not_running: "Test"
+consequence_not_running: "Service effecting"
+nexus_snmp_unmonitor_oid: 2
+description_unmonitor: "Description unmonitor"
+alarm_template_unmonitor: "Test unmonitor"
+consequence_unmonitor: "Service effecting unmonitor"
+
+gui_be_http_port: 8080
+gui_be_sentinel_port: 26380
+gui_be_http_primary_ip: 172.20.209.69
+gui_be_http_secondary_ip: 172.20.209.66
+
+rtengine_sentinel_secondary: 172.20.209.70
+rtengine_sentinel_primary: 172.20.209.69
+rtengine_sentinel_primary_remote: 172.20.209.34
+rtengine_sentinel_secondary_remote: 172.20.209.35
+rtengine_sentinel_port: "26380"
+rtengine_url_flows_primary: "file://{{rtengine_flows_local_storage_dir}}"
+rtengine_url_flows_secondary: "http://{{gui_be_http_secondary_ip}}:{{gui_be_http_port}}/scxml"
+rtengine_refresh_dispatch_logic_ms: "2147483640"
+rtengine_flows_cache_time_sec: "9223372036854775"
+rtengine_redis_read_timeout: "100"
+rtengine_redis_connect_timeout: "100"
+rtengine_config_db: "appdb"
+rtengine_app_master: "appdb"
+rtengine_monitor_master: "monitordb"
+rtengine_spread_master: "spreaddb"
+rtengine_lists_master: "listsdb"
+rtengine_profiles_master: "profilesdb"
+rtengine_sessions_store_master: "sessionsdb"
+rtengine_cdr_master: "queuedb"
+rtengine_queue_master: "queuedb"
+rtengine_sess_queues_master: "sessionsdb"
+rtengine_alarm_queue: "notification-events"
+rtengine_cdr_queue_name: "cdrQueue"
+rtengine_tracedb_master: "tracedb"
+rtengine_remote_context: "remotecontextdb"
+rtengine_sessions_store_master_other: "sessionsdb"
+
+rtengine_show_jvm_stats: true
+rtengine_gateway_worker_delay_threshold_ms: 23000
+rtengine_flows_local_storage_dir: /appl/vtas/sce/flows/{{project_name}} # there are stored the flows for runtime
+tracing_db_label: "tracing-db"
+rtengine_gateway_allowed_workers_in_delay: 1
+
+#TAS part for SIP OCCP (emscli)
+#-----------------------------#
+expiry_timer_call_start_ms: 900   # if not defined deault value is 300 (SIT & Prod), due debug tracing in DEV it should be higher
+expiry_timer_grace_delay_ms: 600  # if not defined deault value is 200 (SIT & Prod), due debug tracing in DEV it should be higher
+auto_reply_SIP_Options: true
+
+#RTE part for SIP
+#---------------#
+## instance definition RteGW
+instance_id0: "0"
+instance_id1: "1"
+project_name: "h3irs"
+process_name: IRS
+mainflow_ingressqueue_suffix: "events"
+mainflow_egressqueue: "app_events"
+rte_ram_max: "500M"
+rte_ram_min: "300M"
+rte_threads: 8
+session_max_lifetime: "10"
+rtengine_log_level: "ALL"
+nexus_log_path_archived: "{{nexus_log_path}}/archive"
+nexus_log_file_size: "20MB"
+nexus_log_max_history: 30
+nexus_log_total_size: "1GB"
+environment_name: SIT
+rtengine_preload_projects_at_startup: ocadmin:h3irs
+#maximum lock for a session in milliseconds; useful to prevent flow design error and create deadlocks
+rtengine_session_lock_duration_ms: "10000"
+rtengine_refresh_profile_time_ms: "60000"
+rtengine_tracing_max_trace_sessions_per_flow: "8000"
+
+
+#LDAPGW part for ldap
+#-------------------#
+## instance definition LdapClientGW
+LdapClientGW_name: "LdapClientGW"
+LdapClientGW_ingressqueue_suffix: "ingress"
+gw_ram_max: "500M"
+gw_ram_min: "300M"
+gw_threads: 16
+ldap_bind_user: "cn=vtas,dc=apd"
+ldap_bind_passwd: "vtas4uir"
+rtengine_gateway_log_level: trace
+rtengine_gateway_log_backlog: 30
+rtengine_gateway_log_maxsize_bytes: 10000000
+
+rtengine_timeout_traffic_brpop: 5
+rtengine_timeout_mgmt_brpop: 5
+rtengine_gateway_jmx_enabled: "true"
+rtengine_gateway_prometheus_enabled: "true"
+rtengine_gateway_prometheus_hotspot_metrics: "true"
+ldap_evaluate_connections_timer_sec: 30
+ldap_dirty_duration_sec: 45
+rtengine_gateway_force_default_queue: "false"
+ldap_pools:
+  - pool1:
+    pool_type: 1 # 2 if multiple
+    pool_name: sit
+    pool_hosts:
+      address: tt-b52-vtas3-uircp-ud.tt-b52.cloud.internal
+      port: 1389
+    pool_options:
+      bind_dn: "{{ldap_bind_user}}"
+      password: "{{ldap_bind_passwd}}"
+      num_connections: 16
+      max_connections: 16
+      init_connections: 16
+      ssl: false
+      startTLS: true
+      connect_timeout: 1000
+      timeout: 1000
+      auto_reconnect: true
+  - pool2:
+    pool_type: 1 # 2 if multiple
+    pool_name: dev
+    pool_hosts:
+      address: tt-b52-vtas3-uircp-ud.tt-b52.cloud.internal
+      port: 1389
+    pool_options:
+      bind_dn: "{{ldap_bind_user}}"
+      password: "{{ldap_bind_passwd}}"
+      num_connections: 16
+      max_connections: 16
+      init_connections: 16
+      ssl: false
+      startTLS: true
+      connect_timeout: 1000
+      timeout: 1000
+      auto_reconnect: true
+      
+ldap_topology:
+  - default:
+    site_id: default
+    pool_names:
+      - sit
+      - dev
+      
+#DiameterGW part for diameter Client
+#-------------------#
+client_sctp_port_1: 1740
+client_sctp_port_2: 1741
+description_instance_client: "Diameter Client user for outbound port"
+DiamClientGW_name: "DiamClientGW"
+DiamClientGW_ingressqueue_suffix: "ingress"
+client_host_IPs_1: 172.18.212.34;172.20.212.34
+client_host_IPs_2: 172.18.212.35;172.20.212.35
+diamgw_hostname_1: tt-b52-vtas3-seesd-0001
+dimagw_hostname_2: tt-b52-vtas3-seesd-0002
+diam_origin_host: "tt-b52-vtas3-irs.ics.mnc014.mcc232.3gppnetwork.org"
+diam_realm: "ics.mnc014.mcc232.3gppnetwork.org"
+diam_peers_1:
+- {host: "172.18.212.59;172.20.212.59", port: 1740}
+- {host: "172.18.212.59;172.20.212.59", port: 1740}
+diam_peers_2:
+- {host: "172.18.212.59;172.20.212.59", port: 1741}
+- {host: "172.18.212.59;172.20.212.59", port: 1741}
+gateway_diameter_sessions_master: sessionsdb
+gateway_diameter_own_vendor_id: 3424
+#diamgw jar 1.0.3 use this. 1.0.0 does only use 1 thread. this parameter must be set to 2. otherwise redis connection pool size should be (2xnumber of threads)+2
+diameter_threads: 2
+graceful_shutdown_redirect_host: "aaa://tt-b52-vtas3-irs.ics.mnc005.mcc232.3gppnetwork.org"
+
+#General DiameterGW parameters
+#----------------------------#
+rtengine_queue_db: "{{rtengine_queue_master}}"
+diamgw_sendqueuedb: true
+degraded_mode_library: true
+degraded_mode_function: true
+degraded_mode_max_exectime: 5000
+log_keys:
+- {key: dummy, value: dummy}
+drop_events_origin_realm: false
+drop_events_destination_realm: false
+diamgw_load_templates: false
+force_kill_timeout: 11
+runpids_dir: "{{nexus_runpids_folder}}"
+diamgw_retry3002: false
+diamgw_start_waitconnection: 60
+ccr_I_gateway_diam_default_result_code: 3002
+ccr_I_gateway_diam_max_queue_length: 500
+ccr_U_gateway_diam_default_result_code: 3002
+ccr_U_gateway_diam_max_queue_length: 5000
+ccr_T_gateway_diam_default_result_code: 3002
+degraded_mode_seq_max_no_responses: 3000
+
+#CDR GW 
+#-------#
+## instance definition CdrGW
+CdrGW_name: "CdrGW"
+CdrGW_ingressqueue_suffix: "ingress"
+cdr_path: "/appl/vtas/var/cdr/h3irs/"
+cdr_templates:
+       - name: default
+         path: "{{cdr_path}}"
+         maxAgeInMinutes: 10
+         estimatedCdrLineLength: 20
+         maxNbOfLines: 100
+         maxSizeInBytes: 1024000
+         closeSuffix: .done
+         openSuffix: .open
+         prefix: cdr
+         separatorEscapeSequenceInFieldContent: "’"
+         fieldSeparator: ","
+         useHeader: false
+         useFooter: false
+         useJsonFormat: true
+         useLinesCount: false
+         footer:
+           - T
+           - GENDATE
+           - GENTIME
+           - current:sessionID
+         header:
+           - H1
+           - GENDATE
+           - GENTIME
+           - 1
+           - \n
+           - H2
+           - RECORDTYPE
+           - RecordID
+           - sessionID
+           - requestNumber
+           - P_CHS_PARAM_ITEM
+           - P_CHS_PARAM_SUBTYPE
+           - P_CHS_EVENT_START_TIME
+           - P_CHS_IMSI
+           - P_CHS_MSC_ADDRESS_OLD
+           - P_CHS_MSC_ADDRESS_NEW
+           - P_CHS_SGSN_ADDRESS_OLD
+           - P_CHS_SGSN_ADDRESS_NEW
+           - P_CHS_SCP_ADDRESS
+           - P_CHS_MSISDN
+         fields:
+           - a_callid
+           - a_country
+           - a_date
+           - a_from
+           - a_idp
+           - a_location
+           - a_pai
+           - a_present
+           - a_privacy
+
+#Prometheus Port for http (statistics)"
+#######################################
+## Used for following variables:
+#  rtengine_prometheus_port
+#  rtengine_prometheus_metrics_port
+#  rtengine_gateway_prometheus_http_port
+
+# {{prom_service_ID}} + {{prom_rte_ID}} or {{prom_httpserv_ID}} + filler (if instance_idX not 2 digits) + {{instance_idX}}
+# e.g.: 61 1 0 0 = 61100
+# e.g.: 61 2 0 1 = 61201
+
+prom_service_ID: 50
+prom_rte_camel_ID: 1
+prom_rte_sip_ID: 2
+prom_httpserv_ID: 2
+prom_ldap_ID: 3
+prom_diamGW_client_ID: 4
+prom_cdr_ID: 7
+prom_tas_ID_sip: 80
+prom_tas_ID_camel: 81
+
+#access the groups ip of "rte_server_1"
+# https://stackoverflow.com/questions/21908363/ansible-read-inventory-hosts-and-variables-to-group-vars-all-file
+#- https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#:~:text=With%20hostvars%20%2C%20you%20can%20access,gathered%20(or%20cached)%20facts.
+# as groups['rte_server_1'] basically return a list of unique ip addresses ['172.23.11.19'] whereas groups['rte_server_1'][0] returns 172.23.11.19.
+prom_rte_server_1: "{{groups['rte_server_1'][0]}}"
+prom_gateway_server_1: "{{groups['gateway_server_1'][0]}}"
+prom_rte_server_2: "{{groups['rte_server_2'][0]}}" 
+prom_gateway_server_2: "{{groups['gateway_server_2'][0]}}"
+
+prom_tas_server_1: "{{groups['tas_server_1'][0]}}"
+prom_tas_server_2: "{{groups['tas_server_2'][0]}}"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -x
+
+authorization=`cat ocvas_token`
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json'  --header "${authorization}" -d '{"claim-name": "project", "claim-value": "h3irs"}' 'http://localhost:9080/set-current-project'
