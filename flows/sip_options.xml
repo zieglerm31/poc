@@ -104,18 +104,18 @@
       <session-store action="io.qsrlabs.nexus.middleware.scxml.handlers.SessionVar"
                      label="Store variable"
                      name=""
-                     s_savedevent="spel:#session[&#34;event&#34;]"
+                     s_savedevent="spel:#event"
                      id="218">
-         <mxCell style="image;html=1;image=clipart/variable.png" vertex="1" parent="1">
+         <mxCell style="image;html=1;image=clipart/variable.png" parent="1" vertex="1">
             <mxGeometry x="728" y="350" width="120" height="60" as="geometry"/>
          </mxCell>
       </session-store>
       <mxCell id="219"
               style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
-              edge="1"
               parent="1"
               source="218"
-              target="11">
+              target="11"
+              edge="1">
          <mxGeometry relative="1" as="geometry"/>
       </mxCell>
    </root>
