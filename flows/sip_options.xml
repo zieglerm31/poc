@@ -118,5 +118,18 @@
               edge="1">
          <mxGeometry relative="1" as="geometry"/>
       </mxCell>
+      <mxCell id="221" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0;"
+              edge="1"
+              parent="1"
+              source="11"
+              target="9">
+         <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+               <mxPoint x="570" y="531"/>
+               <mxPoint x="570" y="722"/>
+            </Array>
+         </mxGeometry>
+      </mxCell>
    </root>
 </mxGraphModel>
