@@ -40,7 +40,7 @@
          </mxGeometry>
       </mxCell>
       <undefined action="com.eitg.quasar.nexus.siphandlers.ScxmlAbortCall" cause=""
-                 errorCode="200"
+                 errorCode="spel:200"
                  label="Send 200 OK &#xA;for Options"
                  message="#session[&#34;s_savedevent&#34;]"
                  name=""
