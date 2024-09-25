@@ -29,12 +29,13 @@
               style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;exitX=1;exitY=1;"
               parent="1"
               source="2"
-              target="11"
+              target="218"
               edge="1">
          <mxGeometry relative="1" as="geometry">
             <Array as="points">
                <mxPoint x="598" y="320"/>
                <mxPoint x="788" y="320"/>
+               <mxPoint x="788" y="340"/>
             </Array>
          </mxGeometry>
       </mxCell>
@@ -74,7 +75,7 @@
               style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
               parent="1"
               vertex="1">
-         <mxGeometry x="776" y="111" width="120" height="50" as="geometry"/>
+         <mxGeometry x="896" y="511" width="120" height="50" as="geometry"/>
       </mxCell>
       <mxCell id="203" value="sip.sessionEnd"
               style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
@@ -89,16 +90,33 @@
       </mxCell>
       <mxCell id="217" value="*"
               style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;entryX=0;entryY=0.5;"
-              edge="1"
               parent="1"
               source="2"
-              target="9">
+              target="9"
+              edge="1">
          <mxGeometry relative="1" as="geometry">
             <Array as="points">
                <mxPoint x="390" y="228"/>
                <mxPoint x="390" y="750"/>
             </Array>
          </mxGeometry>
+      </mxCell>
+      <session-store action="io.qsrlabs.nexus.middleware.scxml.handlers.SessionVar"
+                     label="Store variable"
+                     name=""
+                     s_savedevent="spel:#session[&#34;event&#34;]"
+                     id="218">
+         <mxCell style="image;html=1;image=clipart/variable.png" vertex="1" parent="1">
+            <mxGeometry x="728" y="350" width="120" height="60" as="geometry"/>
+         </mxCell>
+      </session-store>
+      <mxCell id="219"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              edge="1"
+              parent="1"
+              source="218"
+              target="11">
+         <mxGeometry relative="1" as="geometry"/>
       </mxCell>
    </root>
 </mxGraphModel>
