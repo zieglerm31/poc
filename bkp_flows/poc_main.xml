@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="2078.94" dy="698.04" grid="1" gridSize="10" guides="1" tooltips="1"
+              connect="1"
+              fold="1"
+              page="1"
+              pageScale="1"
+              pageWidth="826"
+              pageHeight="1169">
+   <root>
+      <mxCell id="0"/>
+      <mxCell id="1" parent="0"/>
+      <start action="com.eitg.quasar.nexus.middleware.scxml.handlers.StartHandler"
+             initial="1"
+             label=""
+             name=""
+             traceCondition="spel:true"
+             traceField="spel:#initial[&#34;event-additional-info&#34;][&#34;tracingid&#34;]"
+             traceList="h3irs_tracing"
+             traceRandom="spel:100"
+             traceTimeout="345600"
+             id="114">
+         <mxCell style="image;html=1;image=clipart/start-button.png;imageBackground=#FFFF00;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="387" y="50" width="80" height="80" as="geometry"/>
+         </mxCell>
+      </start>
+      <mxCell id="255"
+              value="&#xA;h3irs_InternationalRoamingService_main&#xA;&#xA;Author: MaZi - HPE&#xA;&#xA;Based on specification:&#xA;vTAS ICS International Roaming Service vIRS&#xA;"
+              style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=center;spacingTop=-6;fillColor=#FFFFCC;"
+              parent="1"
+              vertex="1">
+         <mxGeometry x="-503" y="50" width="260" height="124" as="geometry"/>
+      </mxCell>
+      <mxCell id="361" value="sip.callStart.NONE"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.75;entryX=0.5;entryY=0;"
+              parent="1"
+              source="114"
+              target="366"
+              edge="1">
+         <mxGeometry x="0.0062" y="10" relative="1" as="geometry">
+            <Array as="points">
+               <mxPoint x="47" y="110"/>
+            </Array>
+            <mxPoint as="offset"/>
+         </mxGeometry>
+      </mxCell>
+      <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow"
+                      category="procedure"
+                      label="H3A_SIP_part"
+                      subflow="h3irs:h3irs_H3A_SIP_part"
+                      id="364">
+         <mxCell style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="-13.000000000000181" y="385" width="120" height="60" as="geometry"/>
+         </mxCell>
+      </invoke-subflow>
+      <mxCell id="365" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="364"
+              target="407"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+               <mxPoint x="47" y="530"/>
+               <mxPoint x="47" y="530"/>
+            </Array>
+         </mxGeometry>
+      </mxCell>
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="IRS"
+               counter="H3A_SIP_CA"
+               label="H3A_SIP_CA"
+               name="H3A_SIP_CA"
+               type="H3A_SIP_CA"
+               id="366">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="-13" y="208" width="120" height="60" as="geometry"/>
+         </mxCell>
+      </counter>
+      <mxCell id="367"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+              parent="1"
+              source="366"
+              target="364"
+              edge="1">
+         <mxGeometry relative="1" as="geometry">
+            <Array as="points"/>
+         </mxGeometry>
+      </mxCell>
+      <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow#combobox"
+                      category="transfer"
+                      label="Subflow &#xA;sip Options and Unknown"
+                      subflow="poc:sip_options"
+                      id="386">
+         <mxCell style="image;html=1;image=clipart/subflow-static.png;imageBackground=#CCCCFF;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="-211" y="208" width="120" height="60" as="geometry"/>
+         </mxCell>
+      </invoke-subflow>
+      <mxCell id="388" value="sip.sessionStart.OPTIONS"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;"
+              parent="1"
+              source="114"
+              target="386"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler"
+            isfinal="yes"
+            label=""
+            id="390">
+         <mxCell style="image;html=1;image=clipart/plain-stop.png;imageBackground=#CC0000;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="767" y="198" width="80" height="80" as="geometry"/>
+         </mxCell>
+      </stop>
+      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
+               category="startstop"
+               counter="globalerror"
+               label="Stats GlobalError"
+               name="globalerror"
+               type="event"
+               id="391">
+         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
+                 parent="1"
+                 vertex="1">
+            <mxGeometry x="590" y="60" width="120" height="60" as="geometry"/>
+         </mxCell>
+      </counter>
+      <mxCell id="392" value="global.error"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;"
+              parent="1"
+              source="114"
+              target="391"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <mxCell id="393"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;"
+              parent="1"
+              source="391"
+              target="390"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <mxCell id="397" value="*"
+              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.25;entryX=0.25;entryY=0;"
+              parent="1"
+              source="114"
+              target="386"
+              edge="1">
+         <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler"
+            isfinal="yes"
+            label=""
+            id="407">
+         <mxCell style="image;html=1;image=clipart/plain-stop.png;imageBackground=#CC0000;"
+                 vertex="1"
+                 parent="1">
+            <mxGeometry x="6.999999999999972" y="568" width="80" height="80" as="geometry"/>
+         </mxCell>
+      </stop>
+   </root>
+</mxGraphModel>
