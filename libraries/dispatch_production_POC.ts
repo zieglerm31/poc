@@ -24,7 +24,7 @@ function dispatch(event : any) : string {
                 //this is for generic_test_sip.xml flow to test the TAS-SIP module chain with sipp. type3 test
                 if (event.SIP["message"]["body"][0].match("Subject: generic_test_sip")) {     
 
-                    return "production:poc:generic_test_sip";
+                    return "production:poc:poc_main";
                     
                 }
             } catch (e) {
@@ -33,7 +33,7 @@ function dispatch(event : any) : string {
 
             }
 
-            return "production:poc:generic_test_sip";
+            return "production:poc:poc_main";
         }
         
 
