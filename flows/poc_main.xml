@@ -35,60 +35,13 @@
               style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.75;entryX=0.5;entryY=0;"
               parent="1"
               source="114"
-              target="366"
+              target="408"
               edge="1">
          <mxGeometry x="0.0062" y="10" relative="1" as="geometry">
             <Array as="points">
-               <mxPoint x="47" y="110"/>
+               <mxPoint x="210" y="110"/>
             </Array>
             <mxPoint as="offset"/>
-         </mxGeometry>
-      </mxCell>
-      <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow"
-                      category="procedure"
-                      label="H3A_SIP_part"
-                      subflow="h3irs:h3irs_H3A_SIP_part"
-                      id="364">
-         <mxCell style="rectangle;shape=ext;html=1;whiteSpace=wrap;align=center;rounded=0;shadow=0;glass=0;fillColor=#CCCCFF;gradientColor=none;strokeColor=#000000;perimeterSpacing=0;"
-                 parent="1"
-                 vertex="1">
-            <mxGeometry x="-13.000000000000181" y="385" width="120" height="60" as="geometry"/>
-         </mxCell>
-      </invoke-subflow>
-      <mxCell id="365" value="*"
-              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
-              parent="1"
-              source="364"
-              target="407"
-              edge="1">
-         <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-               <mxPoint x="47" y="530"/>
-               <mxPoint x="47" y="530"/>
-            </Array>
-         </mxGeometry>
-      </mxCell>
-      <counter action="com.eitg.quasar.nexus.middleware.scxml.handlers.CustomCounterHandler"
-               category="IRS"
-               counter="H3A_SIP_CA"
-               label="H3A_SIP_CA"
-               name="H3A_SIP_CA"
-               type="H3A_SIP_CA"
-               id="366">
-         <mxCell style="rectangle;shape=ext;rounded=1;html=1;whiteSpace=wrap;double=1;"
-                 parent="1"
-                 vertex="1">
-            <mxGeometry x="-13" y="208" width="120" height="60" as="geometry"/>
-         </mxCell>
-      </counter>
-      <mxCell id="367"
-              style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
-              parent="1"
-              source="366"
-              target="364"
-              edge="1">
-         <mxGeometry relative="1" as="geometry">
-            <Array as="points"/>
          </mxGeometry>
       </mxCell>
       <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow#combobox"
@@ -140,15 +93,16 @@
               edge="1">
          <mxGeometry relative="1" as="geometry"/>
       </mxCell>
-      <stop action="com.eitg.quasar.nexus.middleware.scxml.handlers.StopHandler"
-            isfinal="yes"
-            label=""
-            id="407">
-         <mxCell style="image;html=1;image=clipart/plain-stop.png;imageBackground=#CC0000;"
-                 parent="1"
-                 vertex="1">
-            <mxGeometry x="6.999999999999972" y="568" width="80" height="80" as="geometry"/>
+      <invoke-subflow action="io.qsrlabs.nexus.middleware.scxml.handlers.Subflow#combobox"
+                      category="transfer"
+                      label="Subflow &#xA;sip Options and Unknown"
+                      subflow="poc:generic_test_sip"
+                      id="408">
+         <mxCell style="image;html=1;image=clipart/subflow-static.png;imageBackground=#CCCCFF;"
+                 vertex="1"
+                 parent="1">
+            <mxGeometry x="150" y="350" width="120" height="60" as="geometry"/>
          </mxCell>
-      </stop>
+      </invoke-subflow>
    </root>
 </mxGraphModel>
