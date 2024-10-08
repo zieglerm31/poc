@@ -17,17 +17,31 @@ function dispatch(event : any) : string {
                 
             } 
 
-        } else if (event.SIP.Route[0].address.uri.host.match(/^poc/)) {
+        } else {
 
-            return "production:poc:poc_main";
-            
+            try {
+                //only for testing purpose
+                //this is for generic_test_sip.xml flow to test the TAS-SIP module chain with sipp. type3 test
+                if (event.SIP["message"]["body"][0].match("Subject: generic_test_sip")) {     
+
+                    return "production:poc:generic_test_sip";
+                    
+                }
+            } catch (e) {
+
+                return "production:poc:drop";
+
+            }
+
+            return "production:poc:generic_test_sip";
         }
+        
 
     } catch (e) {
 
-        return "production:poc:drop" ;
+        return "production:poc:drop";
     }
 
     // Default
-	return "production:poc:default" ;
+	return "production:poc:drop";
 }
